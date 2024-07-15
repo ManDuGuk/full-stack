@@ -29,3 +29,10 @@ console.log("줄바꿈이 일어날 지어다\t줄바꿈이 되었도다");
 console.log("줄바꿈이 일어날 지어다\"줄바꿈\"이 되었도다");
 
 // 쉬프트 +  del 키, 알트+ 쉬프트 아래 방향키 --> 복사
+
+// 논리형 false
+console.log(""==false);
+console.log(0==false);
+console.log(undefined==false);
+console.log(NaN==false);
+console.log(null==false);
