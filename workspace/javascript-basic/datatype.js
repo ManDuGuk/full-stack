@@ -31,8 +31,12 @@ console.log("줄바꿈이 일어날 지어다\"줄바꿈\"이 되었도다");
 // 쉬프트 +  del 키, 알트+ 쉬프트 아래 방향키 --> 복사
 
 // 논리형 false
-console.log(""==false);
-console.log(0==false);
-console.log(undefined==false);
-console.log(NaN==false);
-console.log(null==false);
+console.log(""==false); //true
+console.log(0==false);  //true
+console.log(undefined==false); //false --> undefined는 평가는 false지만  undefined끼리를 비교할때만 true가 된다
+console.log(undefined==undefined); //true --> undefined는 평가는 false지만  undefined끼리를 비교할때만 true가 된다
+console.log(NaN==false); //false
+console.log(NaN==NaN); //false --> NaN은 ==연산자로 비교하면 안됨 값은 값인데 서로 다른 값이여서 그렇다.
+console.log(Number.isNaN(NaN)); //true --> NaN은 ==연산자로 비교하면 안됨 값은 값인데 서로 다른 값이여서 그렇다.
+console.log(null==false); //false
+console.log(null==null); //true

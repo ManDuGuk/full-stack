@@ -34,3 +34,19 @@ americano  = 3000;
 console.log(americano*2);
 console.log(latte*4 + moch*2);
 
+//변수의 다양한 선언
+let x,y; x,y = 1000;
+let w = 10,z=20;
+console.log(x,y);
+
+// 동적 타이핑
+let name2 = "남윤호";
+name2 = 10000; //자동형변환
+name2 = 0.47; //자동형변환
+name2 = true; //자동형변환
+
+
+//식별자 관례
+let inputMoney = 100; //camel
+let my_money = 200; //snake -->비권장
+
