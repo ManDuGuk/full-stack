@@ -128,7 +128,6 @@ for (let i = 1; i <= 4; i++) {
 
     for (let j = 1; j <= 5; j++) {
 
-        //5번,4번... 순차적으로 공백 찍고 나머지는 별표찍게
         if (j <= count) {
             //오류내역을 보니까 문자열 아니면 타입배열이나,버퍼여야한다고 한다. 그냥 문자열로 출력해주자
             process.stdout.write(numCount.toString());
