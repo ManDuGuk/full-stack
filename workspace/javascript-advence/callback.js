@@ -15,8 +15,7 @@ function printConsole(chat) {
 print("남윤호", "안녕하세요", printConsole);
 
 //익명형 함수
-print("남윤호02", "안녕하세요02", function
-    (chat) {
+print("남윤호02", "안녕하세요02", function (chat) {
     console.log("윈도우: ");
     console.log(chat);
 });

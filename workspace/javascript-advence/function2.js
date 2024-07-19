@@ -88,7 +88,7 @@ console.log(square());
 console.log(square(10));
 
 //기본 매개변수 활용4(함수를 사용)
-let greeting = (name, greetFunc = defaultGreeting) => greetFunc(name);
+let greeting = (name, greetFunc = defaultGreeting) => greetFunc(name); //에러가 발생해야하는거 아님?
 let defaultGreeting = name => console.log(`hello. ${name}`);
 
 greeting("남윤호");
