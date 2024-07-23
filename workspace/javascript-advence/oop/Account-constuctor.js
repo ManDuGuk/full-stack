@@ -83,4 +83,11 @@ if (ok) {
 }
 
 
+//객체 리터럴 생성은 내부적으론 오프젝트 빈객체를 생성하고 프로퍼티를 추가한것과 동일하다.
+const teacher = new Object(); // 빈객체 생성됨{}
+teacher.name = "남윤호";
+teacher.age = 30;
+teacher.doTeaching = function () {
+    console.log("강의를 한다.");
+}
 
