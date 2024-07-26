@@ -8,6 +8,7 @@ const counter = function () {
     //그런데 여기서 콜백함수를 넣어서 실행해버리면
     let count = 0;
 
+    // 이게 클로저
     const 연산 = function (fn) {
 
         //증감연산과 감소 연산을 콜백함수를 통해 해준다.
