@@ -8,6 +8,13 @@ class AccountRepository {
         this.accounts = [];
     }
 
+    get accounts() {
+        return [this._accounts];
+    }
+    set accounts(newAccount) {
+        this._accounts = newAccount;
+    }
+
     addAccount(account) {
 
         // 이렇게 짜니까 처음몇번은 괜찮은데 이후로 점점 중복등록되는 버그가 생김

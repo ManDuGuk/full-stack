@@ -78,5 +78,8 @@ deleteAccount.accounts.forEach(account => {
     console.log(`이름: ${account.name}, 비번: ${account.password}, 계좌: ${account.number}, 잔액:${account.balance}`);
 });
 
+console.log(accountRepository.accounts);
+
+
 
 console.log("[KOSTA BANK 계좌 관리 프로그램 종료]");
