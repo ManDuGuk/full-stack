@@ -1,5 +1,8 @@
 /**
  * 계좌 관리 객체
+ * 어떤함수를 호출해서 값을 가져올때는 내가 형식을 정해서 주는게 아니라 나온그대로 돌려주는게 맞다.
+ * 출력하는 기능같은거는 해당 함수를 호출한 곳에서 만들어서 해주는것이 좋다.
+ * 어카운트 js에 있는 함수의 기능을 활용해서또 쓰면좋다.
  */
 
 class AccountRepository {
@@ -129,7 +132,11 @@ class AccountRepository {
             return account.number === number;
         })
 
-        this.accounts.splice(result, 1);
+        //예외처리해줘야됨
+        if (result != -1) {
+
+            this.accounts.splice(result, 1);
+        }
 
 
         return { log: "삭제되었습니다.", accounts: this.findByAll() };
