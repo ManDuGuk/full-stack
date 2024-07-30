@@ -1,6 +1,4 @@
 // 입출금 계좌
-const AccountError = require("./AccountError");
-
 class Account {
     constructor(number, name, password, balance) {
         this.number = number;
@@ -29,12 +27,12 @@ class Account {
     withdraw(money, password) {
 
         if (password !== this.password) {
-            throw new AccountError(100, "비밀번호를 다시 확인해주세요.");
+            throw new Error("[로그인 실패] : 비밀번호를 다시 확인해주세요.");
 
         }
 
         if (this.balance <= money) {
-            throw new AccountError(200, "계좌 잔액이 부족합니다.");
+            throw new Error("[잔액 부족] : 계좌의 잔액이 부족합니다.");
 
         }
         return this.balance -= money;
@@ -49,9 +47,9 @@ class Account {
 
 const account = new Account("111-111", "남윤호", 111, 1000);
 try {
-    account.withdraw(100000, 111);
+    account.withdraw(10000, 111);
 } catch (error) {
-    console.log(error.toString());
+    console.log(error.message);
 }
 
 module.exports = Account;
