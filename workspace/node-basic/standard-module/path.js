@@ -12,3 +12,9 @@ console.log(pathObj);
 
 const fullpath = path.join("c:", "a", "b", "xxx.jpg")
 console.log(fullpath);
+
+
+const fullpath2 = path.join("c:", "a", "/b", "xxx.jpg")
+console.log(fullpath2);
+fullpath2 = path.resolve("c:", "a", "/b", "xxx.jpg")
+console.log(fullpath2);
