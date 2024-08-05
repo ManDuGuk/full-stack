@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Naver-clone</title>
+    <link rel="shortcut icon" type="favicon" href="images/favicon.ico">
+    <link rel="stylesheet" href="./home.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header-box">
+            <div class="nav-bar">
+                <div class="icon-hamberger">
+                    <div></div>
+                </div>
+                <div class="icon-pay">
+                    <div></div>
+                </div>
+                <div class="icon-empty">
+                    <div></div>
+                </div>
+                <div class="icon-talk">
+                    <div></div>
+                </div>
+                <div class="icon-noti">
+                    <div></div>
+                </div>
+                <div class="icon-market">
+                    <div></div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <div class="search-box">
+                    <div class="home-logo">
+                        <div>
+                            <img src="./images/naver_logo.png" alt="logo-img">
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text">
+                        <script>
+                            document.querySelector('input').addEventListener('click', function () {
+                                this.placeholder === "" ? this.placeholder = "검색어를 입력해주세요" : this.placeholder = "";
+                            });
+                        </script>
+                    </div>
+                    <div class="icon-keybord">
+                        <div></div>
+                    </div>
+                    <div class="icon-arrow">
+                        <div></div>
+                    </div>
+                    <div class="icon-search">
+                        <img src="./images/icon_search.svg" alt="search-icon">
+                    </div>
+                </div>
+            </div>
+            <div class="shortcut-bar">
+                <ul class="shortcut-items">
+                    <li class="items">
+                        <div class="icon-mail icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            메일
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-cafe icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            카페
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-blog icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            블로그
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-shoping icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            쇼핑
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-news icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            뉴스
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-chart icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            증권
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-buildings icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            부동산
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-map icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            지도
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-cartoon icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            웹툰
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-brodcast icon-whiteboxs">
+                            <img src="./images/icon-broadcast.png" alt="icon-broadcast">
+                        </div>
+                        <span>
+                            치지직
+                        </span>
+                    </li>
+                    <li class="items">
+                        <div class="icon-more icon-whiteboxs">
+                            <div></div>
+                        </div>
+                        <span>
+                            더보기
+                        </span>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="body-box">
+            <div class="article-box">
+                <div class="article-news"></div>
+                <div class="article-category"></div>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-login"></div>
+                <div class="sidebar-widget"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
