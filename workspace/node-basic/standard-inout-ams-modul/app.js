@@ -1,8 +1,9 @@
 const { createInterface } = require("readline");
-
 const Account = require("./ams-project-myver/Account");
 const MinusAccount = require("./ams-project-myver/MinusAccount");
 const AccountRepository = require("./ams-project-myver/AccountRepository");
+const fs = require('fs').promises;
+const path = require('path');
 
 // 계좌 관리 프로그램 생성
 const accountRepository = new AccountRepository();
@@ -24,6 +25,25 @@ const readLine = function (message) {
 }
 
 
+// 시작시 파일 불러와서 배열 만들주기
+fs.readFile('./customer.json')
+    .then((data) => {
+        let readjson = JSON.parse(data.toString());
+
+        readjson.forEach(accountData => {
+            const account = new Account(accountData._name, accountData._password, accountData._number, accountData._balance);
+            accountRepository.addAccount(account);
+        });
+
+        console.log("제이슨 파싱 완료");
+
+    })
+    .catch(console.log)
+
+const allCounts = function () {
+    const allList = accountRepository.findByAll();
+    return allList
+}
 
 // 메뉴 출력
 const createMessage = function () {
@@ -49,6 +69,7 @@ const app = async function () {
     while (running) {
         printMenu();
         let menuNum = parseInt(await readLine("> "));
+        let toJson = null;
         switch (menuNum) {
             case 1:
                 // createAccount();
@@ -82,7 +103,23 @@ const app = async function () {
                 if (createOk === 1) {
                     //계좌 생성
                     account = new Account(accountOwner, password, accountNum, initMoney);
-                    accountRepository.addAccount(account);
+                    const result = accountRepository.addAccount(account);
+
+                    // let test = allCounts(); //객체 배열
+                    // console.log(test);
+                    // let jsontest = JSON.stringify(test); //제이슨 배열로 변환됨
+                    // console.log(jsontest);
+                    // let jsontojs = JSON.parse(jsontest);  //다시 객체 배열로 
+                    // console.log(jsontojs);
+
+                    toJson = JSON.stringify(allCounts()); //제이슨 배열로 변환됨
+
+                    //파일에 내용넣기,전체 계좌 조회해서 덮어써버림
+                    fs.writeFile('./customer.json', toJson)
+                        .then(() => console.log("파일 입력완료"))
+                        .catch((e) => console.log(e.message));
+
+                    console.log("파일쓰기 완료");
 
                     console.log("신규 계좌 등록 완료");
                 } else {
@@ -99,9 +136,9 @@ const app = async function () {
                 const allList = accountRepository.findByAll();
 
                 allList.forEach(account => {
-
                     console.log(`이름: ${account.name}, 비번: ${account.password}, 계좌: ${account.number}, 잔액:${account.balance}`);
                 });
+
                 break;
             case 3: // 입금
                 // 계좌번호와 입금액 입력 받아 입금 처리
@@ -110,6 +147,14 @@ const app = async function () {
                 console.log(inputNo, inputMoney);
 
                 accountRepository.updateAccount(inputNo, inputMoney, Account.prototype.pulseMoney)
+
+                toJson = JSON.stringify(allCounts()); //제이슨 배열로 변환됨
+
+                //파일에 내용넣기,전체 계좌 조회해서 덮어써버림
+                fs.writeFile('./customer.json', toJson)
+                    .then(() => console.log("파일 입력완료"))
+                    .catch((e) => console.log(e.message));
+
                 console.log("입금완료");
                 break;
             case 4: // 출금
@@ -117,8 +162,17 @@ const app = async function () {
                 let outputNo = await readLine("- 계좌번호 : ");
                 let outputMoney = parseInt(await readLine("- 출금액 : "));
                 console.log(outputNo, outputMoney);
-                console.log("출금 완료");
                 accountRepository.updateAccount(outputNo, outputMoney, Account.prototype.minusMoney)
+
+
+                toJson = JSON.stringify(allCounts()); //제이슨 배열로 변환됨
+
+                //파일에 내용넣기,전체 계좌 조회해서 덮어써버림
+                fs.writeFile('./customer.json', toJson)
+                    .then(() => console.log("파일 입력완료"))
+                    .catch((e) => console.log(e.message));
+
+                console.log("출금완료");
                 break;
             case 5: // 계좌번호로 검색
                 // 계좌 번호 입력 받아 계좌 정보 출력
@@ -140,6 +194,15 @@ const app = async function () {
                 deleteAccount.accounts.forEach(account => {
                     console.log(`이름: ${account.name}, 비번: ${account.password}, 계좌: ${account.number}, 잔액:${account.balance}`);
                 });
+
+                toJson = JSON.stringify(allCounts()); //제이슨 배열로 변환됨
+
+                //파일에 내용넣기,전체 계좌 조회해서 덮어써버림
+                fs.writeFile('./customer.json', toJson)
+                    .then(() => console.log("파일 입력완료"))
+                    .catch((e) => console.log(e.message));
+
+                console.log("삭제완료");
 
                 break;
             case 7:

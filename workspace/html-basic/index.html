@@ -10,8 +10,31 @@
 </head>
 
 <body>
-    <h1>html 처음이에요</h1>
-    <p>단락</p>
+    <h1>폼연습</h1>
+    <form action="http://127.0.0.1:5500/workspace/html-basic/index.html" method="post" name="myForm" autocomplete="off">
+
+        <fieldset>
+            <legend>회원가입 정보</legend>
+            <label for="userid">아이디</label>
+            <!-- id는 css에서 접근시 사용,name은 서버로 전송할때 쓰인다. -->
+            <input id="userid" name="userid" value="guest" type="text">
+            <input id="userid" type="password">
+            <input id="userid" type="search">
+            <!-- 모바일에서 해보면 다르다. -->
+            <input id="userid" type="email">
+            <input id="userid" type="tel">
+            <input id="userid" type="number">
+            <input id="userid" type="radio" name="gender">
+            <input id="userid" type="radio" name="gender">
+            <input id="userid" type="range">
+            <input id="userid" type="date">
+
+
+            <input id="userid" type="button" value="버튼">
+            <input id="userid" type="submit" value="버튼">
+        </fieldset>
+
+    </form>
 
 
 </body>
