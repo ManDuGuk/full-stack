@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'HS-Regular';
+    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HS-bold';
+    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
+    font-weight: 1000;
+    font-style: normal;
+}
+
+.myfont-reqular {
+    font-family: 'HS-Regular';
+    font-size: 30px;
+}
+
+.myfont-bold {
+    font-family: 'HS-bold';
+    font-size: 30px;
+}
+
+.display-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.cssbox {
+    margin: 10px;
+    border: 1px solid;
+    border-color: cornflowerblue;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 30px;
+}
+
+
+.cssbox>h2 {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 20px;
+    margin-top: 0px;
+    border-radius: 16px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.cssbox>p {
+    color: darkgray;
+    padding: 20px;
+}
+
+#container {
+    border-color: lightcoral;
+}
+
+#container>h2 {
+    background-color: lightcoral;
+}
+
+/* 속성 선택자 */
+span[data-state*="_"] {
+    color: lightblue;
+}
+
+.cssbox>h2>span>a {
+    color: white;
+    text-decoration: none;
+}
+
+.cssbox>h2>span>a:active {
+    color: rgb(255, 254, 199);
+}
+
+.cssbox>h2>span>a:hover {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+}
+
+.cssbox ul li:nth-child(2) {
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+p::selection {
+    background-color: lightgoldenrodyellow;
+}
+
+a::before {
+    font-family: 'Material Symbols Outlined';
+    content: 'favorite';
+    vertical-align: middle;
+    margin-right: 5px;
+    /* 또는 다른 값 */
+
+}

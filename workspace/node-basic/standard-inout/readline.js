@@ -17,18 +17,18 @@ const consoleInterface = readline.createInterface({
 // });
 
 // 공백으로 구분된 여러개의 값 받기
-// let nums = [];
-// process.stdout.write("공백으로 구분된 여러개의 숫자 입력 : ");
-// consoleInterface.on("line", (inputLine) => {
-//     nums = inputLine.split(" ").map((num) => {
-//         return parseInt(num);
-//     });
-//     const sum = nums.reduce((acc, num) => {
-//         return acc + num;
-//     }, 0);
-//     console.log(`합 : ${sum}`);
-//     consoleInterface.close();
-// });
+let nums = [];
+process.stdout.write("공백으로 구분된 여러개의 숫자 입력 : ");
+consoleInterface.on("line", (inputLine) => {
+    nums = inputLine.split(" ").map((num) => {
+        return parseInt(num);
+    });
+    const sum = nums.reduce((acc, num) => {
+        return acc + num;
+    }, 0);
+    console.log(`합 : ${sum}`);
+    consoleInterface.close();
+});
 
 // 이벤트 기반 한줄 입력 받기를 더욱 간단하게 만든 버전
 consoleInterface.question("이름이 뭐니?", (name) => {

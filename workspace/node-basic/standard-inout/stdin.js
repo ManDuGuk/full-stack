@@ -13,10 +13,10 @@ process.stdin.on("data", (data) => {
 });
 
 // chunk  단위 읽기
-// process.stdin.on('readable', () => {
-//     let chunk;
-//     while ((chunk = process.stdin.read()) !== null) {
-//         process.stdout.write(`chunk: ${chunk}`);
-//     }
-// });
+process.stdin.on('readable', () => {
+    let chunk;
+    while ((chunk = process.stdin.read()) !== null) {
+        process.stdout.write(`chunk: ${chunk}`);
+    }
+});
 
