@@ -42,7 +42,7 @@ const app = async function () {
                 console.log(header);
                 const account = null;
                 let no = parseInt(await readLine("> "));
-                let accountNum = await readLine("- 계좌번호 : ");
+                let accountNum = await readLine("- 계좌번호 : 2");
                 let accountOwner = await readLine("- 예금주명 : ");
                 let password = parseInt(await readLine("- 비밀번호 : "));
                 let initMoney = parseInt(await readLine("- 입금액 : "));
