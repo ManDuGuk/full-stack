@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            margin: 0px;
+        } */
+        #container {
+            background : #9e9090;
+        }
+        .class1 {
+            color: red;
+        }
+
+        section, h2, p {
+           font-size: 20pt; 
+        }
+        p > span {
+            background: gold;
+        }
+        a[target*="_"] {
+            background: green;            
+        }
+
+        div[class^="class"] {
+            background: #ffa500;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+        a:visited {
+            background: yellow;
+        }
+        a:hover {
+            background: red;
+        }
+
+        input:focus {
+            background: red;
+        }
+        
+        li:nth-child(2n){
+            background-color: rgb(10, 30, 255);
+        }
+
+        /* 가상 요소 선택자 */
+        p::selection {
+            background-color: yellow;
+            color: white;
+        }
+        .class1::before {
+            /* content: "제목입니다"; */
+            content: url("https://picsum.photos/250/100");
+        }
+    </style>
+</head>
+<body>
+    <section id="container">
+        
+        <h2 class="class1">CSS</h2>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, magni? Sequi minima ipsa voluptates saepe nihil, fugiat reprehenderit numquam, 
+            ipsum a natus et veniam ratione minus asperiores, nobis animi in.</p>
+        <h2 class="class1">HTML</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, magni? Sequi minima ipsa voluptates saepe nihil, fugiat reprehenderit numquam, 
+            ipsum a natus et veniam ratione minus asperiores, nobis animi in.</p>
+        <h2>JavaScript</h2>
+        <span>천재</span>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, magni? Sequi minima ipsa voluptates saepe nihil, fugiat reprehenderit numquam, 
+            ipsum a natus et veniam ratione minus asperiores, nobis animi in.
+            <span>바보</span>
+        </p>
+    </section>
+
+    <a href="#">링크1</a>
+    <a href="#" target="_blank">링크2</a>
+
+    <div class="class1 class2 class3">
+        테스트입다.
+    </div>
+
+    <div class="class5">
+        테스트입다.
+    </div>
+
+    <a href="https://www.google.com">구글</a>
+
+    <input type="text">
+
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+    </ul>
+
+    <p>단락 내용입니다.</p>
+
+</body>
+</html>

@@ -392,6 +392,9 @@ body {
 }
 
 .article-news-banner {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
     background-color: #f5f7f8;
     display: flex;
     margin: 0 20px;
