@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            padding: 2%;
+            width: 30%;
+            border: 1px solid rgba(0, 0, 0, 0.482);
+            border-radius: 16px;
+        }
+
+        .complete {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="title">오늘할일</h1>
+        <ul id="today-list">
+            <li class="item">자바공부</li>
+            <li class="item">밥먹자</li>
+            <li class="item">퇴근히지</li>
+        </ul>
+
+        <h1 id="title">내일할일</h1>
+        <ul id="tomorrow-list">
+            <li class="item">놀자</li>
+            <li class="item">밥두번먹자</li>
+            <li class="item">퇴근할필요없다.</li>
+        </ul>
+    </div>
+
+    <script>
+        const tomorrowList = document.querySelector("#tomorrow-list");
+
+        // 첫번째 마지막 자식요소 추가 
+        const firstli = document.createElement("li");
+        firstli.textContent = "첫번째 항목";
+        tomorrowList.prepend(firstli);
+        const lastli = document.createElement("li");
+        lastli.textContent = "마지막 항목";
+        tomorrowList.append(lastli);
+
+        //중간 자식
+        const middleli = document.createElement("li");
+        middleli.textContent = "중간 항목";
+        // item으로 선택하기
+        // tomorrowList.insertBefore(middleli, tomorrowList.children.item(2));
+        // 유사배열로 선택하기
+        tomorrowList.insertBefore(middleli, tomorrowList.children[2]);
+
+        //특정요소 삭제
+        const todayList = document.querySelector("#today-list");
+        todayList.children.item(0).remove();
+        //부모만 이용해서 삭제할경우
+        // todayList.removeChild(todayList.children.item(0));
+
+        //특정요소 이동
+        tomorrowList.prepend(todayList.children.item(0));
+
+        //이전 형제 요소 추가
+        const firstp = document.createElement("p")
+        firstp.innerHTML = "<strong>처음으로</strong>";
+        tomorrowList.before(firstp);
+        // tomorrowList.after(firstp);
+
+        // 요소에 css 추가하기
+        // 비권장
+        // todayList.firstElementChild.style.textDecoration = "line-through";
+        // 요소에 class 속성 추가하기
+        todayList.firstElementChild.classList.add("complete");
+        todayList.firstElementChild.classList.remove("complete");
+    </script>
+</body>
+
+</html>

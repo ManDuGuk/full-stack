@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <!-- 1.인라인 이벤트 처리(비권장) -->
+        <!-- <button onclick="console.log('버튼1 클릭');" >버튼1</button>
+        <button>버튼2</button> -->
+
+        <button id="btn1">버튼1</button>
+        <button id="btn2">버튼2</button>
+    </div>
+
+
+    <script>
+        // 2.고전 이벤트 처리 모델
+        // const btn1 = document.querySelector('#btn1');
+        // const btn2 = document.querySelector('#btn2');
+
+        // const onClickHandler = function () {
+        //     console.log('버튼클릭이요');
+        // }
+
+        // btn1.onclick = onClickHandler;
+
+        // 3.표준 이벤트 처리 모델
+        const btn1 = document.querySelector('#btn1');
+        const btn2 = document.querySelector('#btn2');
+        const onClickHandler = function (event) {
+            console.log('버튼클릭이요');
+            // console.dir(event);
+            // 모든 이벤트 객체의 공통 프로퍼티
+            // console.log(event.type);
+            // console.log(event.target);
+            if (event.target === btn1) {
+                console.log('버튼1클릭됨');
+
+            } else {
+                console.log('버튼2클릭됨');
+
+            }
+
+            // this를 써도 됨(단 onClickHandler가 화살표 함수면 가르키는게 다름)
+            // 즉 tartget을 다룰때는 this를 쓰는건 지양해야됨
+            // if (this === btn1) {
+            //     console.log('버튼1클릭됨');
+
+            // } else {
+            //     console.log('버튼2클릭됨');
+
+            // }
+        }
+        btn1.addEventListener("click", onClickHandler);
+        // btn1.addEventListener("click", () => {
+        //     btn1.style.background = "blue";
+        // });
+
+        btn2.addEventListener("click", onClickHandler);
+
+
+        // 이벤트 핸들러 제거
+        // btn1.removeEventListener("click", onClickHandler);
+
+
+        document.addEventListener("contextmenu", (event) => {
+            alert("동작그만");
+            event.preventDefault();
+        })
+    </script>
+</body>
+
+</html>

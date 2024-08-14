@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="menu">
+
+        <button class="menu-item">버튼1</button>
+        <button class="menu-item">버튼2</button>
+        <button class="menu-item">버튼3</button>
+    </div>
+    <script>
+        const menu = document.querySelector("#menu");
+        // 동적 버튼 생성 및 추가
+        const newButton = document.createElement('button');
+        newButton.textContent = "버튼4";
+        menu.append(newButton);
+
+        //해당 방법은 동적으로 추가된 요소는 이벤트로 동작이 되지 않는다. 
+        // const buttons = document.querySelectorAll(".menu-item")
+        // for (const button of buttons) {
+        //     button.addEventListener("click", (event) => {
+        //         console.log(event.target.textContent + "버튼클릭");
+
+        //     });
+        // }
+
+        //이벤트 버블링 이용-->위임형 이벤트 처리
+        //동적으로 만들어지는 요소를 이벤트 처리할때 유용하다.
+        menu.addEventListener("click", (event) => {
+            console.log(event.target.textContent + "버튼클릭");
+        })
+    </script>
+</body>
+
+</html>
