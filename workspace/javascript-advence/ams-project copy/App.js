@@ -78,7 +78,7 @@ deleteAccount.accounts.forEach(account => {
     console.log(`이름: ${account.name}, 비번: ${account.password}, 계좌: ${account.number}, 잔액:${account.balance}`);
 });
 
-console.log(accountRepository.accounts);
+
 
 
 

@@ -9,7 +9,7 @@ class AccountRepository {
     }
 
     get accounts() {
-        return [this._accounts];
+        return this._accounts;
     }
     set accounts(newAccount) {
         this._accounts = newAccount;
