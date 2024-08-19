@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 오늘할일 제목아래 에다가 인풋, 등록버튼,버튼 등록하면 맨 아래 등록됨,form 태그 안넣어도됨 -->
+<!-- 각 항목별로 체크박스를 만들어서 체크하면 텍스트에 취소선그어주기,체크취소하면 원상복귀 체크박스는 파워포인터에 chage이벤트 참조할것-->
+<!-- 입력한 데이터를 먼저 데이터에 넣고 li로 만들어 줄것 -->
+<!-- 각 항목에 체크박스 옆에 삭제버튼도 만듬 -->
+
+<!-- 
+1. 아이템 수정하기
+2. 체크된 아이템 한번에 지우기
+3. 배열에 저장처리
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            padding: 2%;
+            width: 30%;
+            border: 1px solid rgba(0, 0, 0, 0.482);
+            border-radius: 16px;
+        }
+
+        .complete {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="title">오늘할일</h1>
+        <input type="text" id="todo"><button>등록</button>
+        <ul id="today-list">
+            <!-- <li class="item">자바공부</li>
+            <li class="item">밥먹자</li>
+            <li class="item">퇴근히지</li> -->
+        </ul>
+
+    </div>
+
+
+    <!-- <script>
+        const tomorrowList = document.querySelector("#tomorrow-list");
+
+        // 첫번째 마지막 자식요소 추가 
+        const firstli = document.createElement("li");
+        firstli.textContent = "첫번째 항목";
+        tomorrowList.prepend(firstli);
+        const lastli = document.createElement("li");
+        lastli.textContent = "마지막 항목";
+        tomorrowList.append(lastli);
+
+        //중간 자식
+        const middleli = document.createElement("li");
+        middleli.textContent = "중간 항목";
+        // item으로 선택하기
+        // tomorrowList.insertBefore(middleli, tomorrowList.children.item(2));
+        // 유사배열로 선택하기
+        tomorrowList.insertBefore(middleli, tomorrowList.children[2]);
+
+        //특정요소 삭제
+        const todayList = document.querySelector("#today-list");
+        todayList.children.item(0).remove();
+        //부모만 이용해서 삭제할경우
+        // todayList.removeChild(todayList.children.item(0));
+
+        //특정요소 이동
+        tomorrowList.prepend(todayList.children.item(0));
+
+        //이전 형제 요소 추가
+        const firstp = document.createElement("p")
+        firstp.innerHTML = "<strong>처음으로</strong>";
+        tomorrowList.before(firstp);
+        // tomorrowList.after(firstp);
+
+        // 요소에 css 추가하기
+        // 비권장
+        // todayList.firstElementChild.style.textDecoration = "line-through";
+        // 요소에 class 속성 추가하기
+        todayList.firstElementChild.classList.add("complete");
+        todayList.firstElementChild.classList.remove("complete");
+    </script> -->
+
+    <script>
+        const todoArray = [];
+
+        document.querySelector("button").addEventListener("click", (event) => {
+            const data = {};
+            let inputVal = document.querySelector("#todo").value;
+
+            let li = document.createElement("li")
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            // checkbox.name = "checkboxs"
+            checkbox.classList.add("checkboxs");
+
+            // console.log(checkbox);
+            let deletebox = document.createElement("button");
+            deletebox.textContent = "삭제";
+
+            li.innerHTML = inputVal;
+            li.classList.add("item")
+
+
+            li.append(checkbox);
+            li.append(deletebox);
+
+            checkbox.addEventListener('click', (i) => {
+                console.log(i.target.checked);
+                console.log(i.target.parentElement);
+                if (i.target.checked) {
+                    i.target.parentElement.style.textDecoration = "Line-through";
+                } else {
+                    i.target.parentElement.style.textDecoration = "none";
+                }
+
+                // console.log(i.target.previousSibling);
+
+                i.target.parentElement
+                todoArray.forEach(element => {
+
+                    console.log(element.value);
+                    console.log(i.target.previousSibling.previousSibling.textContent);
+
+                    if (element.value === i.target.previousSibling.previousSibling.textContent) {
+                        element.isCheked = true;
+                    }
+                    console.log(todoArray);
+                });
+
+            })
+
+            deletebox.addEventListener('click', (i) => {
+                todoArray.forEach(element => {
+
+                    console.log(element.value);
+                    console.log(i.target.previousSibling.textContent);
+
+
+                    if (element.value === i.target.previousSibling.textContent) {
+                        element.isDeleted = true;
+                    }
+                    console.log(todoArray);
+                });
+
+                i.target.parentElement.remove();
+                i.target.parentElement.value
+
+
+
+
+            })
+
+
+            data.value = inputVal;
+            data.isCheked = false;
+            data.isDeleted = false;
+
+            document.querySelector("#today-list").append(li);
+
+            todoArray.push(data);
+            console.log(todoArray);
+
+        })
+
+        document.querySelector("#today-list").addEventListener("change", (event) => {
+            console.log("상태변화됨");
+            let checks = document.querySelectorAll(".checkboxs");
+            let count = 0;
+            checks.forEach(element => {
+                if (!element.checked) {
+                    count++;
+                }
+            });
+
+            // let lis = document.querySelectorAll(".item");
+            // for (i = 0; i < lis.length; i++) {
+            //     if (i === count) {
+            //         lis[i].style.color = "red";
+            //     }
+            // }
+
+
+            // const lis = document.querySelectorAll(".item");
+            // lis.forEach(element => {
+            //     element.style.color = "red"
+            // });
+        })
+    </script>
+</body>
+
+</html>

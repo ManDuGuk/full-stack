@@ -63,6 +63,15 @@ accountRepository.addAccount(new MinusAccount("김기정", 1111, "111-111", 1000
 const allList = accountRepository.findByAll();
 allList.forEach(account => {
     // console.log(account);
+
+    // if(accont instanceof MinusAccount){
+    //     console.log("마이너스 계좌");
+    // }else{
+    //     console.log("입출금 계좌");
+    // }
+
+    // 이런식으로 toString을 이용해서 한번에 처리한는것도 좋다.
+    // console.log(account.toString(account));
     console.log(`이름: ${account.name}, 비번: ${account.password}, 계좌: ${account.number}, 잔액:${account.balance}`);
 });
 

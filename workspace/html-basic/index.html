@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 메타 데이터 : 인코딩 디코딩에 뭘쓸지 정해줌-->
+    <meta charset="UTF-8">
+    <!-- 반응형 웹만들때 사용된다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- <link rel="stylesheet" href="./hello.css"> -->
+
+    <!-- 구글 아이콘 -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- 임포트 지시자를 이용하면 불필요한 참조를 모듈화시킬수 있다.-->
+    <style>
+        @import url(./hello.css);
+    </style>
+
+    <title>html first</title>
+</head>
+
+<body>
+    <h1>폼연습</h1>
+    <form action="http://127.0.0.1:5500/workspace/html-basic/index.html" method="post" name="myForm" autocomplete="off">
+
+        <fieldset>
+            <legend>회원가입 정보</legend>
+            <label for="userid">아이디</label>
+            <!-- id는 css에서 접근시 사용,name은 서버로 전송할때 쓰인다. -->
+            <input id="userid" name="userid" value="guest" type="text">
+            <input id="userid" type="password">
+            <input id="userid" type="search">
+            <!-- 모바일에서 해보면 다르다. -->
+            <input id="userid" type="email">
+            <input id="userid" type="tel">
+            <input id="userid" type="number">
+            <input id="userid" type="radio" name="gender">
+            <input id="userid" type="radio" name="gender">
+            <input id="userid" type="range">
+            <input id="userid" type="date">
+
+
+            <input id="userid" type="button" value="버튼">
+            <input id="userid" type="submit" value="버튼">
+        </fieldset>
+
+    </form>
+
+
+    <div class="cssbox">
+
+        <h2 class="myfont-reqular display-flex">
+            <span>
+                <a href="#">css란 무엇인가</a>
+            </span>
+            <span data-state="_blue">
+                파란버전
+            </span>
+        </h2>
+        <p>loreEiusmod minim dolore mollit cupidatat magna occaecat enim nostrud
+            culpa ex
+            tempor. Ullamco veniam nulla
+            excepteur voluptate commodo tempor commodo ea. Et aliquip magna officia nisi consectetur enim voluptate
+            dolor.
+            Magna ipsum ullamco duis pariatur reprehenderit laboris mollit ipsum pariatur reprehenderit labore commodo.
+
+            Nostrud ea exercitation culpa pariatur incididunt et in velit consectetur ad anim aute laborum. Labore
+            exercitation elit ut laborum laborum. Do sit id consequat ad occaecat non sunt mollit magna ad officia
+            reprehenderit. Adipisicing commodo culpa non aute. Deserunt minim amet occaecat nisi consectetur aute ipsum
+            ea
+            adipisicing. Esse nostrud esse esse eiusmod nostrud anim ut adipisicing.
+        </p>
+        <span>
+            <ul>
+                <li>봤는가?</li>
+                <li>봤는가?</li>
+                <li>봤는가?</li>
+            </ul>
+        </span>
+        <p>
+            Reprehenderit tempor tempor elit occaecat. Aliqua ad occaecat cillum anim magna adipisicing occaecat aute
+            aute
+            ullamco. Laboris culpa cillum aute labore. Amet incididunt ut mollit nostrud in ad quis duis proident minim
+            in
+            dolore cillum sit. Non eu et Lorem excepteur ipsum aute.
+
+            Veniam enim velit adipisicing dolor labore exercitation. Minim pariatur id culpa cillum cupidatat. Laboris
+            incididunt cillum aute mollit dolore pariatur eu dolore cillum veniam excepteur id dolor excepteur.
+            Adipisicing
+            minim quis culpa ea occaecat sunt nisi proident nisi nisi. Voluptate mollit sunt minim eu eu in cupidatat
+            incididunt sit aliqua officia cillum. Ex voluptate adipisicing fugiat laborum officia.
+
+            Labore qui sunt ut magna Lorem reprehenderit dolore sunt ipsum cupidatat commodo aliquip tempor. Velit
+            mollit
+            sint eu labore qui nulla elit. Pariatur irure minim in consectetur adipisicing adipisicing. Aute laborum ad
+            nostrud nostrud fugiat eu in ex aliqua ad do. Pariatur nostrud anim ea qui.
+        </p>
+    </div>
+
+    <section class="cssbox" id="container">
+
+        <h2 class="myfont-bold display-flex">
+            <span>
+                css란 무엇인가
+            </span>
+            <span data-state="_red">
+                빨강버전
+            </span>
+        </h2>
+        <p>loreEiusmod minim dolore mollit cupidatat magna occaecat enim nostrud
+            culpa ex
+            tempor. Ullamco veniam nulla
+            excepteur voluptate commodo tempor commodo ea. Et aliquip magna officia nisi consectetur enim voluptate
+            dolor.
+            Magna ipsum ullamco duis pariatur reprehenderit laboris mollit ipsum pariatur reprehenderit labore commodo.
+
+            Nostrud ea exercitation culpa pariatur incididunt et in velit consectetur ad anim aute laborum. Labore
+            exercitation elit ut laborum laborum. Do sit id consequat ad occaecat non sunt mollit magna ad officia
+            reprehenderit. Adipisicing commodo culpa non aute. Deserunt minim amet occaecat nisi consectetur aute ipsum
+            ea
+            adipisicing. Esse nostrud esse esse eiusmod nostrud anim ut adipisicing.
+
+            Reprehenderit tempor tempor elit occaecat. Aliqua ad occaecat cillum anim magna adipisicing occaecat aute
+            aute
+            ullamco. Laboris culpa cillum aute labore. Amet incididunt ut mollit nostrud in ad quis duis proident minim
+            in
+            dolore cillum sit. Non eu et Lorem excepteur ipsum aute.
+
+            Veniam enim velit adipisicing dolor labore exercitation. Minim pariatur id culpa cillum cupidatat. Laboris
+            incididunt cillum aute mollit dolore pariatur eu dolore cillum veniam excepteur id dolor excepteur.
+            Adipisicing
+            minim quis culpa ea occaecat sunt nisi proident nisi nisi. Voluptate mollit sunt minim eu eu in cupidatat
+            incididunt sit aliqua officia cillum. Ex voluptate adipisicing fugiat laborum officia.
+
+            Labore qui sunt ut magna Lorem reprehenderit dolore sunt ipsum cupidatat commodo aliquip tempor. Velit
+            mollit
+            sint eu labore qui nulla elit. Pariatur irure minim in consectetur adipisicing adipisicing. Aute laborum ad
+            nostrud nostrud fugiat eu in ex aliqua ad do. Pariatur nostrud anim ea qui.</p>
+    </section>
+
+    <section class="cssbox" id="container">
+
+        <h2 style="background-color: #BEDC74;" class="myfont-bold display-flex">
+            <span style="color: #F6E96B !important;">
+                css란 무엇인가
+            </span>
+            <span data-state="_red">
+                노랑버전
+            </span>
+        </h2>
+        <p>loreEiusmod minim dolore mollit cupidatat magna occaecat enim nostrud
+            culpa ex
+            tempor. Ullamco veniam nulla
+            excepteur voluptate commodo tempor commodo ea. Et aliquip magna officia nisi consectetur enim voluptate
+            dolor.
+            Magna ipsum ullamco duis pariatur reprehenderit laboris mollit ipsum pariatur reprehenderit labore commodo.
+
+            Nostrud ea exercitation culpa pariatur incididunt et in velit consectetur ad anim aute laborum. Labore
+            exercitation elit ut laborum laborum. Do sit id consequat ad occaecat non sunt mollit magna ad officia
+            reprehenderit. Adipisicing commodo culpa non aute. Deserunt minim amet occaecat nisi consectetur aute ipsum
+            ea
+            adipisicing. Esse nostrud esse esse eiusmod nostrud anim ut adipisicing.
+
+            Reprehenderit tempor tempor elit occaecat. Aliqua ad occaecat cillum anim magna adipisicing occaecat aute
+            aute
+            ullamco. Laboris culpa cillum aute labore. Amet incididunt ut mollit nostrud in ad quis duis proident minim
+            in
+            dolore cillum sit. Non eu et Lorem excepteur ipsum aute.
+
+            Veniam enim velit adipisicing dolor labore exercitation. Minim pariatur id culpa cillum cupidatat. Laboris
+            incididunt cillum aute mollit dolore pariatur eu dolore cillum veniam excepteur id dolor excepteur.
+            Adipisicing
+            minim quis culpa ea occaecat sunt nisi proident nisi nisi. Voluptate mollit sunt minim eu eu in cupidatat
+            incididunt sit aliqua officia cillum. Ex voluptate adipisicing fugiat laborum officia.
+
+            Labore qui sunt ut magna Lorem reprehenderit dolore sunt ipsum cupidatat commodo aliquip tempor. Velit
+            mollit
+            sint eu labore qui nulla elit. Pariatur irure minim in consectetur adipisicing adipisicing. Aute laborum ad
+            nostrud nostrud fugiat eu in ex aliqua ad do. Pariatur nostrud anim ea qui.</p>
+    </section>
+</body>
+
+</html>

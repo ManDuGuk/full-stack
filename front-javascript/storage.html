@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>현재 카운트 : <span id="result">0</span></p>
+    <button id="plusBtn" type="button">+</button>
+    <button id="minusBtn" type="button">-</button>
+    <hr>
+    <button type="button" id="addStudent">학생 등록</button>
+    <button type="button" id="listStudents">학생 목록</button>
+
+    <script>
+        const closure = (function () {
+            let count = 0;
+            return function (fn) {
+                // return ++count;
+                count = fn(count);
+                return count;
+            }
+        })();
+
+        // storage에 카운트값 저장
+        const saveCount = function () {
+            if (localStorage) {
+                // console.dir(localStorage);
+                if (localStorage.getItem("count")) {
+                    let updateCount = parseInt(localStorage.getItem("count")) + 1;
+                    localStorage.setItem("count", updateCount);
+                } else {
+                    localStorage.setItem("count", 0);
+                }
+
+            } else {
+                alert("스토리지를 지원하지 않는 브라우저입니다..");
+            }
+            return localStorage.getItem("count");
+        }
+
+        // localStorage에 학생 정보 저장
+        const saveStudent = function (student) {
+            let students;
+            if (localStorage.getItem("students")) {
+                students = JSON.parse(localStorage.getItem("students"));
+            } else {
+                students = [];
+            }
+            students.push(student);
+            localStorage.setItem("students", JSON.stringify(students));
+        }
+
+        const readStudents = function () {
+            let students;
+            if (localStorage.getItem("students")) {
+                students = JSON.parse(localStorage.getItem("students"));
+            } else {
+                students = [];
+            }
+            return students;
+        }
+
+
+        // 학생등록 테스트
+        // const student = {
+        //     sno : 10,
+        //     name : "김기정",
+        // };
+
+        // saveStudent(student);
+
+
+
+        // 카운트값 화면 출력
+        const displayCount = function (count) {
+            document.querySelector("#result").textContent = count;
+        }
+
+        // event target
+        const plusBtn = document.querySelector("#plusBtn");
+        const minusBtn = document.querySelector("#minusBtn");
+        const addStudent = document.querySelector("#addStudent");
+        const listStudents = document.querySelector("#listStudents");
+
+        plusBtn.addEventListener("click", (event) => {
+            // count = ++count;
+            // const closure = plusCount();
+            // 클로저 활용
+            // let count = closure((count)=> {
+            //     return ++count;
+            // });
+            // storage 활용
+            const updateCount = saveCount();
+
+            // console.log(count);
+            // displayCount(count);
+            displayCount(updateCount);
+        });
+
+        minusBtn.addEventListener("click", (event) => {
+            displayCount(closure(count => --count));
+        });
+
+        addStudent.addEventListener("click", (event) => {
+            const student = {
+                sno: 11,
+                name: "박기정",
+            };
+            saveStudent(student);
+        });
+
+        listStudents.addEventListener("click", (event) => {
+            const students = readStudents();
+            students.forEach(student => {
+                console.log(`학생번호: ${student.sno}, 학생이름: ${student.name}`);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

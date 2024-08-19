@@ -1,5 +1,8 @@
 /**
  * 계좌 관리 객체
+ * 어떤함수를 호출해서 값을 가져올때는 내가 형식을 정해서 주는게 아니라 나온그대로 돌려주는게 맞다.
+ * 출력하는 기능같은거는 해당 함수를 호출한 곳에서 만들어서 해주는것이 좋다.
+ * 어카운트 js에 있는 함수의 기능을 활용해서또 쓰면좋다.
  */
 
 class AccountRepository {
@@ -8,6 +11,7 @@ class AccountRepository {
         this.accounts = [];
     }
 
+<<<<<<< HEAD:workspace/javascript-advence/ams-project copy/AccountRepository.js
     get accounts() {
         return this._accounts;
     }
@@ -15,26 +19,9 @@ class AccountRepository {
         this._accounts = newAccount;
     }
 
+=======
+>>>>>>> 6c2d28befb2f36d017e911b8dbc9736470e1abf7:workspace/node-basic/standard-inout-ams-dummy/ams-project-myver/AccountRepository.js
     addAccount(account) {
-
-        // 이렇게 짜니까 처음몇번은 괜찮은데 이후로 점점 중복등록되는 버그가 생김
-        // let exist;
-        // if (this.accounts.length === 0) {
-        //     this.accounts.push(account);
-        //     exist = "성공"
-        // } else {
-
-        //     this.accounts.forEach(innerAccount => {
-        //         if (innerAccount.number === account.number) {
-        //             exist = "실패";
-        //             return;
-        //         }
-        //         this.accounts.push(account)
-        //         exist = "성공";
-        //     });
-        // }
-
-        //나중에 확인해보니 여기는 some 함수로 하는게 더 좋아보인다
 
         let exist;
         // Returns the value of the first element in the array where predicate is true, and undefined
@@ -129,10 +116,30 @@ class AccountRepository {
             return account.number === number;
         })
 
-        this.accounts.splice(result, 1);
+        //예외처리해줘야됨
+        if (result != -1) {
+
+            this.accounts.splice(result, 1);
+        }
 
 
         return { log: "삭제되었습니다.", accounts: this.findByAll() };
+    }
+
+    //이름과 콜백 함수를 받아서 이름으로 계좌를 조회하고, Account의 입금출금 메소드를 갖다쓰자
+    updateAccount(inputNo, inputMoney, fn) {
+        // Returns the index of the first element in the array where predicate is true, and - 1
+        const result = this.accounts.findIndex((account) => {
+            return account.number === inputNo;
+        })
+
+        let account = this.accounts[result];
+
+        //계좌 플러스,마스너스 메소드 작동
+        let updatedBalance = fn.call(account, inputMoney);
+
+        //계좌 업데이트
+        this.accounts[result].balance = updatedBalance;
     }
 }
 

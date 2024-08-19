@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul id="list">
+            <li>java</li>
+            <li>javascript</li>
+            <li>python</li>
+        </ul>
+    </div>
+
+    <div id="list2">
+
+    </div>
+    <script>
+        const newli = document.createElement("li");
+        const text = document.createTextNode("css");
+        newli.append(text)
+
+        // 맨앞은 prepend 맨뒤는 appand
+        document.querySelector("#list").prepend(newli);
+
+        const array = [
+            { name: "김기정", age: 10 },
+            { name: "남기정", age: 10 },
+            { name: "부기정", age: 10 },
+        ];
+
+        const list2ul = document.createElement('ul');
+
+        // HTML 자체를 때려받는 방법
+        document.querySelector("#list2").append(list2ul);
+        list2ul.innerHTML = `${array.map(item => {
+            return `<li>이름: ${item.name} 나이: ${itme.age}</li>`
+        }).join('')}`
+
+
+        // 생성하고  append 해줘야 추가됨 문제가 되었던건 create를 for문 밖에 만들어놔서 하나만 생성된 요소에 계속 값을 주고 있던 문제점이 있었고, 
+        // 1번문제 const list2li = document.createElement('li');
+        // 2번쩨 문제 document.querySelector("#list2 ul li").append(list2li); 이런식으로 쿼리의 첫번째 요소만 계속 찾아서 거기다 계속 값을 최신하해주는 바보짓
+        // 그래놓고 이중포문을 돌리려는 미친짓
+        array.forEach(element => {
+            let name = element.name
+            let age = element.age
+
+            const list2li = document.createElement('li');
+            document.querySelector("#list2 ul").append(list2li);
+            list2li.textContent = name + age;
+        });
+    </script>
+</body>
+
+</html>

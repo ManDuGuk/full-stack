@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float</title>
+    <style>
+        html {
+            position: relative;
+            background-color: lightblue;
+        }
+
+        body {
+            /* position: relative; */
+            background-color: lightgoldenrodyellow;
+            height: 500vh;
+        }
+
+        img {
+            width: 50%;
+            float: right;
+            padding: 10px;
+        }
+
+        .footer {
+            background-color: lightgray;
+            /* clear 처리를 안하면 인라인처럼 작동해버린다*/
+            /* clear: both; */
+            width: 100%;
+            text-align: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            margin: 30px;
+            height: 50px;
+            width: 20%;
+        }
+
+        .red {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .green {
+            position: relative;
+            left: 50%;
+        }
+
+        .blue {
+
+            position: absolute;
+            margin: 0;
+            right: 0;
+            bottom: 0;
+
+        }
+
+        .hios {
+            margin: 0 auto;
+        }
+
+        .hios img {
+            position: fixed;
+            height: 20%;
+            object-fit: contain;
+        }
+
+        img {
+            animation: rotate_image 0.1s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        @keyframes rotate_image {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header {
+            position: sticky;
+            /* 달라붙는 위치 */
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container">
+        <h2>css</h2>
+        <img src="./images/sp_sprites.png" alt="">
+        <p>Elit non ad et labore aute minim do non labore qui. Do velit minim in quis nostrud. Occaecat pariatur
+            cupidatat amet nisi non ea exercitation labore cillum. Lorem elit consectetur mollit laboris deserunt mollit
+            proident dolore ipsum proident proident id incididunt tempor. Labore nulla ullamco consequat veniam do magna
+            consectetur. Velit consectetur est dolore quis culpa. Laborum ut esse excepteur proident ad sint laborum
+            tempor pariatur incididunt id excepteur proident enim.
+
+            Esse nulla ad tempor esse. Elit ea quis laborum quis in ullamco cillum sint reprehenderit quis amet aliquip.
+            Labore aliqua tempor magna aute nisi duis ipsum dolore ut esse nostrud ad. Eiusmod fugiat fugiat commodo
+            enim laborum eu. Adipisicing qui minim non velit officia cupidatat aliquip est est quis excepteur sit
+            voluptate deserunt. Dolore voluptate aute commodo aliqua.
+
+            Pariatur fugiat tempor veniam laborum aliqua magna ea incididunt velit. Duis voluptate quis enim sunt nulla
+            aute cupidatat aliquip sit esse adipisicing aliquip. Consequat nisi ad officia consectetur. Nostrud cillum
+            quis irure eiusmod occaecat quis consequat adipisicing. Eu ipsum tempor duis voluptate nulla enim qui non
+            sint. Quis duis sint aliquip occaecat laborum.
+
+            Sunt ea amet officia pariatur non qui incididunt exercitation aliqua mollit. Aliquip mollit pariatur nostrud
+            tempor do dolore non amet in sit sunt velit ex. Labore magna in aliqua dolore pariatur anim ipsum esse enim
+            enim. Duis id do consequat Lorem Lorem consectetur cupidatat fugiat occaecat. Anim qui anim incididunt minim
+            aliqua culpa magna velit amet sit deserunt. Incididunt qui occaecat ex culpa qui voluptate id ex. Elit
+            occaecat aliquip laboris consectetur nostrud anim velit et non culpa.
+
+            Consequat Lorem ipsum ut laboris veniam et sint reprehenderit eu commodo culpa eiusmod consequat.
+            Adipisicing dolor cillum consectetur aute Lorem aute incididunt. Id proident adipisicing sint voluptate
+            proident elit quis. Incididunt dolore ad ad ad anim occaecat id tempor veniam laboris aute nostrud nulla
+            reprehenderit. Veniam mollit sint Lorem in non id. Dolor culpa ad ullamco non.</p>
+        <p class="footer">footer</p>
+    </div> -->
+
+
+    <div class="red" style="background-color: red;">
+        red
+    </div>
+
+
+    <div class="green" style="background-color: green;">
+        green
+    </div>
+    <div class="hios">
+        <img src="./images/OIP.jfif" alt="">
+    </div>
+    <div class="blue" style="background-color: blue;">
+        blue
+    </div>
+    <div class="header" style="background-color: lightcoral;">
+        임시헤더
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <!-- 버튼을 누르면 이벤트 처리를 form에서 해줘야한다. target이 form으로 된다.
+         submit이벤트는 버튼이 아니라 form에 걸리는것이란 말이다. -->
+        <form action="#" name="login">
+            <input type="text" name="id" placeholder="id">
+            <input type="text" name="pw" placeholder="pw">
+            <button type="submit">로그인</button>
+            <button type="reset">취소</button>
+        </form>
+    </div>
+
+    <script>
+        const isEmpty = function (input) {
+            if (input && input.trim() !== "") {
+                return false;
+            }
+            return true;
+        }
+
+        // 숫자 형식 검증
+        const isNumber = function (input) {
+            return /^\d+$/.test(input);
+        }
+
+        // 아이디 형식 검증
+        const isId = function (input) {
+            return /^\w{6,10}$/.test(input);
+        }
+    </script>
+    <script>
+
+
+        document.body.addEventListener
+        // console.log(document.login);
+        // submit 디폴트 이벤트 제거
+        document.login.addEventListener("submit", function (event) {
+            // 기본 서브밋이벤트 죽이기
+            event.preventDefault();
+
+            // this는 form을 가르킨다.
+            const inputId = this.id.value;
+            if (isEmpty(inputId)) {
+                alert("비어있음");
+                return;
+            }
+            //유효성 검사 통과하면 submit메소드로 전송함
+            this.submit();
+        })
+        // reset 디폴트 이벤트 제거
+        document.login.addEventListener("reset", (event) => {
+            event.preventDefault();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>플렉스 박스 홈페이지</title>
+  <style>
+    * {
+      margin: 1px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 95vh;
+      background-color: #34e7e4;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #3c40c6;
+      padding: 2em 0px;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .left {
+      background-color: #3c40c6;
+      padding: 3em 0px;
+      flex: 1 1 100px;
+    }
+
+    main {
+      background-color: #3c40c6;
+      padding: 3em 0 3em 0;
+      flex: 5 5 auto;
+    }
+
+    .right {
+      background-color: #3c40c6;
+      padding: 3em 0 3em 0;
+      flex: 1 1 100px;
+    }
+
+    footer {
+      background-color: #3c40c6;
+      padding: 1em 0px;
+    }
+
+    /* 뷰포트 너비가 550px 까지 플렉스박스 주축 방향을 컬럼으로 설정 */
+    @media screen and (max-width: 550px) {
+      .container {
+        flex-direction: column;
+      }
+
+      main {
+        padding: 5em 0px;
+      }
+    }
+  </style>
+
+<body>
+  <!-- flexbox 레이아웃 & mediaquery 적용-->
+  <header>HEADER</header>
+  <div class="container">
+    <aside class="left">LEFT</aside>
+    <main>
+      MAIN CONTENT
+    </main>
+    <aside class="right">RIGHT</aside>
+  </div>
+
+  <footer>FOOTER</footer>
+</body>
+
+</html>

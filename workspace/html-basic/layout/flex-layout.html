@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>플렉스박스 레이아웃</title>
+    <style>
+        * {
+            margin: 1px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            height: 95vh;
+        }
+        .header {
+            background-color: #b9badc;
+            padding: 1em 0 1em 0;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            height: 300px;
+        }
+        .left {
+            background-color: #aaf08a;
+            flex: 0 0 200px;
+            /* flex: 1; */
+        }
+        .content {
+            background-color: #b2b2b9;
+            flex: 5;
+        }
+        .right {
+            background-color: #aaf08a;
+            flex: 1;
+        }
+        footer {
+            background-color: #b9badc;
+            padding: 1em 0 1em 0;
+        }
+    </style>
+
+<body>
+    <div class="header">HEADER</div>
+    <div class="container">
+        <div class="left">LEFT</div>
+        <div class="content">
+            MAIN CONTENT
+        </div>
+        <div class="right">RIGHT</div>
+    </div>
+    <footer>FOOTER</footer>
+</body>
+
+</html>
