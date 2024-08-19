@@ -1,4 +1,4 @@
-import { Student } from "./Student.js";
+import { Student } from "./student.js";
 import { StudentRepository } from "./student-repository.js";
 import { EventHandler } from "./event-handler.js";
 
@@ -9,7 +9,10 @@ studentRepository.addStudent(new Student(11, '최기정', 100, 90, 90));
 studentRepository.addStudent(new Student(12, '박기정', 92, 82, 80));
 studentRepository.addStudent(new Student(13, '최기정', 95, 85, 88));
 
-let eventHandler = new EventHandler();
-eventHandler.eventRegist();
+// let eventHandler = new EventHandler();
+// eventHandler.eventRegist();
+
+console.log(studentRepository);
+
 
 export { studentRepository }
