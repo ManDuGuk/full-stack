@@ -18,6 +18,10 @@ export class StudentRepository {
         this.rankScore();
     }
 
+    findAllStudent() {
+        return [...this.students];
+    }
+
     delStudent() {
         this.students.pop();
     }
@@ -38,4 +42,14 @@ export class StudentRepository {
             this.students[i].rank = i + 1;
         }
     }
+
+    //번호 정렬
+    numSort() {
+        this.students.sort((a, b) => b.num - a.num)
+    }
+    //이름 정렬 //문자열에다가 사칙연산 하지 말자.
+    nameSort() {
+        this.students.sort((a, b) => a.name.localeCompare(b.name))
+    }
+
 }
