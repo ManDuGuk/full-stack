@@ -39,8 +39,6 @@ eventHandler.eventRegist((studentData) => {
 
     //전체를 찾은 값을 넘김
     localStorage.saveStudent(studentRepository.findAllStudent());
-
-
 })
 //버튼클릭이벤트2-->배열데이터 렌더링
 eventHandler.displayStudentAll(studentRepository.students)
@@ -48,10 +46,12 @@ eventHandler.displayStudentAll(studentRepository.students)
 //정렬 셀렉트이벤트
 eventHandler.selectSort(studentRepository);
 
-//검색 필터 선택 이벤트
-eventHandler.filterSort();
+//검색버튼 클릭이벤트
+eventHandler.searchEvent(studentRepository.students);
 
-eventHandler.searchEvent(eventHandler.filterSort())
+//삭제버튼 클릭이벤트
+eventHandler.deletStudent(studentRepository, localStorage.saveStudent);
 
+//삭제하고 다시렌더링
 
 export { studentRepository }

@@ -4,16 +4,27 @@ export class EventHandler {
     }
     eventRegist(callback) {
 
+        //정규표현식 패턴
+        const text = /[a-zA-Zㄱ-ㅎ가-힣]/;
+        const numbers = /\b(0|[1-9][0-9]?|100)\b/;
+
         document.querySelector("#addBtn").addEventListener("click", function () {
 
+
             // student 입력한 값들가져오기
-            let sno = document.inputForm.sno.value;
+            let sno = parseInt(document.inputForm.sno.value);
             let sname = document.inputForm.sname.value;
             let kor = parseInt(document.inputForm.kor.value);
             let eng = parseInt(document.inputForm.eng.value);
             let math = parseInt(document.inputForm.math.value);
 
-            callback({ sno, sname, kor, eng, math });
+            if (!numbers.test(sno) || !text.test(sname) || !numbers.test(kor) || !numbers.test(eng) || !numbers.test(math)) {
+                alert("다시 확인해보세요");
+                return false;
+            } else {
+                callback({ sno, sname, kor, eng, math });
+            }
+
         });
     }
 
@@ -24,7 +35,6 @@ export class EventHandler {
 
         // 전체 렌더링함수
         students.forEach(student => {
-
 
             const tr = document.createElement("tr")
             const numtd = document.createElement("td")
@@ -101,50 +111,77 @@ export class EventHandler {
         });
     }
 
-    // 검색은 내일하기로..
-    // filterSort() {
-    //     let selectbox = document.querySelector(".form-select");
-    //     document.querySelector(".form-select").addEventListener("change", (e) => {
-    //         let selectValue = selectbox.options[selectbox.selectedIndex].value;
+    //버튼을 클릭함 이벤트 //원본 객체 배열을 전달 받는다.
+    searchEvent(studentsArray) {
 
-    //         if (selectValue === "ssn") {
-    //             document.querySelectorAll("td").forEach(element => {
-    //                 element.style.display = "block";
-    //             });
-    //             let resultList = document.querySelectorAll("td: nth - child(1)");
-
-    //             //input값 받아오기
-    //             let searchnum = document.querySelector(".form-control").value;
-    //             // 노드 배열로 받아온다.
-    //             resultList.forEach(element => {
-    //                 let ssnValue = parseInt(element.querySelector("td").textContent)
-
-    //                 if (ssnValue !== searchnum) {
-    //                     element.style.display = "none";
-    //                 }
-    //             });
-    //         } else (selectValue === "name") {
-    //             document.querySelectorAll("td").forEach(element => {
-    //                 element.style.display = "block";
-    //             });
-
-    //             let resultList = document.querySelectorAll("td: nth - child(2)");
-    //             let searchnum = document.querySelector(".form-control").value;
-    //             // 노드 배열로 받아온다.
-    //             resultList.forEach(element => {
-    //                 let ssnValue = parseInt(element.querySelector("td").textContent)
-
-    //                 if (ssnValue === searchnum) {
-    //                     element.style.display = "none";
-    //                 }
-    //             });
-    //         };
-    //     });
-    // }
-
-    searchEvent(fn) {
+        //버튼클릭이벤트
         document.querySelector("#searchBtn").addEventListener("click", (e) => {
-            fn();
+
+            //셀렉션 이벤트에 대한 값을 바로 가져와서 처리
+
+            //셀렉션 값을 받아왔던
+            let select = document.querySelector("#searchSelect");
+            let value = select.options[select.selectedIndex].value;
+
+            //인풋값 받아오고
+            let inputValue = document.querySelector("#searchbar").value;
+
+            let tempArray = [];
+
+            if (!inputValue) {
+                this.readStudent(studentsArray);
+            } else {
+
+                //검색값을 받아와서 리턴
+                studentsArray.forEach(element => {
+                    // nameArray = element.filter((inputname) => element.name === inputname)
+                    // numArray = element.filter((inputnum) => element.num === inputname)
+
+                    if ((value === "name" ? element.name : parseInt(element.num)) === inputValue) {
+
+
+                        tempArray.push(element);
+                    }
+
+
+
+
+                });
+
+                this.readStudent(tempArray);
+            }
         });
+
+
+    }
+
+    deletStudent(studentRepository, callback) {
+        const numbers = /\b(0|[1-9][0-9]?|100)\b/;
+
+        document.querySelector("#delBtn").addEventListener("click", (e) => {
+            let sno = parseInt(document.inputForm.sno.value);
+
+            if (!numbers.test(sno)) {
+                alert("삭제할값이 없어요 다시 확인하세요");
+                return false;
+            } else {
+
+                const deletedStudents = [];
+                studentRepository.students.forEach(element => {
+                    console.log("엘레먼트" + element);
+                    console.log(element.num);
+
+                    if (parseInt(element.num) !== sno) {
+                        deletedStudents.push(element);
+                    }
+                });
+
+                studentRepository.students = [...deletedStudents];
+                this.readStudent(studentRepository.students);
+
+                callback(studentRepository.students)
+            };
+        })
+
     }
 }

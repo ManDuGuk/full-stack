@@ -22,9 +22,9 @@ export class StudentRepository {
         return [...this.students];
     }
 
-    delStudent() {
-        this.students.pop();
-    }
+    // delStudent() {
+    //     this.students.pop();
+    // }
 
     totalScore(student) {
         return student.kor + student.en + student.math;
@@ -45,7 +45,7 @@ export class StudentRepository {
 
     //번호 정렬
     numSort() {
-        this.students.sort((a, b) => b.num - a.num)
+        this.students.sort((a, b) => a.num - b.num)
     }
     //이름 정렬 //문자열에다가 사칙연산 하지 말자.
     nameSort() {
