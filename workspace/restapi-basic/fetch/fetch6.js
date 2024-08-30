@@ -20,14 +20,16 @@ const find = () => {
     }
 
     //get으로 사용자 정보 조회해서 보낸데이터를 form안에 넣어줌
+    //특이사항으로 함수안에서 다른 함수를 호출하면 클로저 처럼 작동한다고 한다. 
+    //getUserInfo의 divFrm을 name으로 하지 않아도 id로 찾아도 find에서 divFrm을 정의했다면 getUserInfo에서 divFrm을 사용할수 있다.
     getUserInfo(idVal);
 }
 
 const getUserInfo = async (id) => {
     try {
         let newUrl = url + `api/users/${id}`;
-        const response = await fetch(newUrl)
-        const data = await response.json();
+        const response = await fetch(newUrl) //데이터를 문자열로 받아옴
+        const data = await response.json(); //제이슨 객체로 파싱해서 돌려줌
         console.log(data);
 
         // alert(data);
@@ -43,7 +45,7 @@ const getUserInfo = async (id) => {
 
 //수정처리 하는 메서드
 const updateUser = async (id) => {
-    event.preventDefault();
+    event.preventDefault(); //form 태그 이벤트를 막는것, form이 없으면 할필요없음
     try {
         let newUrl = url + `api/users/${id}`;
         //수정할 회원의 id값 받기
@@ -62,7 +64,7 @@ const updateUser = async (id) => {
                 name: updatename,
                 job: updatejob
             }
-            //put메서드로 요청보내기
+            //put메서드로 요청보내기, 옵션을 줘야한다.
             const response = await fetch(newUrl, {
                 method: 'PUT',
                 headers: {
