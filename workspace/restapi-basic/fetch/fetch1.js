@@ -11,6 +11,10 @@ const getUserInfo = (url) => {
         .then((response) => {
             // alert(response.ok)
             if (!response.ok) throw new Error('요청이 잘못되었거나 네트워크 문제');
+            console.log('response:' + response); //response오브젝트
+            console.log('response:' + response);
+            console.log('response.json():' + response.json()); //프로미스 오브젝트
+
             return response.json(); //JSON.parse(xhr.responseText)
         })
         .then((data) => {
