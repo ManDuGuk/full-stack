@@ -19,6 +19,20 @@
         <div id="findDiv" class="my-4">
             <button type="button" id="btnAll" class="btn btn-primary">모두보기</button>
             <button type="button" id="openBtn" class="btn btn-info">OPEN API에서 검색</button><br /><br />
+            <form id="searchFrm">
+                <div class="row">
+                    <div class="col-2 text-center">
+                        <label for="keyword">검색할 도서명:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="검색할 도서명 입력">
+                    </div>
+                    <div class="col-2">
+                        <button type="button" id="btnSearch" class="btn btn-success">search</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
         <!-- 도서목록 -------------------------------------- -->
         <div id="bookList">
@@ -73,6 +87,7 @@
                                 <button type="button" id="btnUpdate" class="btn btn-warning" disabled>
                                     수정처리
                                 </button>
+
                             </td>
                         </tr>
                     </table>
@@ -82,6 +97,6 @@
         </div>
     </div>
 </body>
-<script src="./js/book.js"></script>
+<script src="./js/bookUI.js" type="module"></script>
 
 </html>
