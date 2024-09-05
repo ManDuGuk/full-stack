@@ -1,6 +1,6 @@
 //해당 북라우터의 모든 요청은 앞에 /book이 온것을 전체로 하는것이다. 
 
-
+//라우터 수준의 미들웨어
 const express = require('express');
 const router = express.Router(); //독립적인 라우터 객체를 생성하는 역할
 //미니 앱처럼 동작하여 경로 및 미들웨어를 정의할수 있다.
@@ -44,7 +44,7 @@ router.get('/search', (req, res) => { //코드위치가 중요하다. 가장 아
 
 //create: 새로운 도서정보 등록
 //isbn:일련번호 title:mySQL publish:에이스 출판사 price:25000, imgae:d.jpg
-router.post('', (req, res) => {
+router.post('/', (req, res) => {
     let isbn = 1111 + books.length;
     console.log(`isbn:${isbn}`);
     //post 방식일때 데이터 얻기:req.body
@@ -149,3 +149,5 @@ router.put('/:isbn', (req, res) => {
 })
 
 module.exports = router;
+//exports.add=function(){}
+//exports.num
