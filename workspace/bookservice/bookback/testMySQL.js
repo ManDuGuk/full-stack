@@ -1,0 +1,41 @@
+//npm i mysql2 --s
+
+const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql2/promise')
+//mysql2의 promise API 사용
+require('dotenv').config()
+
+const app = express();
+const port = process.env.PORT || 3333;
+
+//미들웨어
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+//mysql커네션풀 설정
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'kosta',
+    password: '1234',
+    port: 3306,
+    database: 'studydb',
+    connectionLimit: 10, //최대 커넷션 수: 10개를 미리 준비한다.
+    waitForConnections: true
+})
+
+app.get('/', async (req, res) => {
+    const sql = `select * from user`;
+    try {
+        const [data] = await pool.query(sql); //mysql2는 연결자원 반납 알아서 자동으로 처리한다.
+        res.send(data);
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+})
+
+app.listen(port, () => {
+    console.log(`http://localhost${port}`);
+
+})

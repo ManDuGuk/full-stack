@@ -13,6 +13,8 @@ const bookRouter = require('./routes/booksRouter'); //내가 만든모듈은 .�
 //폴더가 없으면 bookRouter.js 파일을 찾는다.
 const userRouter = require('./routes/userRouter');
 const naverRouter = require('./routes/naverRouter');
+const indexRouter = require('./routes/indexRouter.js');
+const bookDBRouter = require('./routes/bookDBRouter');
 
 const express = require('express'); //외장 모듈은 이름만으로 불러온다. //웹관련 세팅 라이브러리
 require('dotenv').config(); //환경설정 이미 여기서 해줬는데 왜 안되지?????????/
@@ -35,7 +37,9 @@ app.use(cors()) //모든 도메인 허용
 
 
 //아래는 분산처리를 위한 미들웨어 설정일뿐 어떤 순서는 상관없다.  /book으로 요청이 오면 bookRouter에서 처리, /users요청이 오면 userRouter에서 처리 /naver요청이 오면 naverRouter에서 처리를 한다. 
-app.use('/books', bookRouter)
+app.use('/', indexRouter);
+app.use('/books', bookRouter) ///배열 사용
+app.use('/api/books', bookDBRouter) //DB연동
 app.use('/users', userRouter)
 app.use('/naver', naverRouter)
 
