@@ -1,6 +1,11 @@
 const baseUrl = `http://localhost:7777`
 const url = baseUrl + `/api/books`;
 
+const showError = (error) => {
+    let msg = document.getElementById('resultMessage');
+    msg.innerHTML = `<h3>${error}</h3>`;
+    msg.style.display = 'block';
+}
 
 const findBook = async (keyword) => {
     const url2 = url + `/search?keyword=${keyword}`;
@@ -10,7 +15,8 @@ const findBook = async (keyword) => {
         renderBooks(data);
 
     } catch (error) {
-        alert(error);
+        // alert(error);
+        showError(error);
     }
 
 }
@@ -33,7 +39,29 @@ const addBook = async (newBook) => {
         clearInput(); //입력필드값 초기화
     } catch (error) {
         console.error('Error: ', error);
-        alert(error);
+        // alert(error);
+        showError(error);
+    }
+
+
+}
+
+const addBookFileup = async (formData) => {
+
+    try {
+        const response = await fetch(url, {
+            method: 'post',
+            body: formData
+        })
+        //formData 객체를 사용하면 브라우저가 자동으로 content-type헤더를 설정하면서 
+        //적절한 boundary를 추가한다 ===> multipart/form-data 형식으로 알아서 전송
+
+        const data = await response.json();
+        getAllBook();
+        clearInput();
+
+    } catch (error) {
+        showError(error);
     }
 
 
@@ -59,7 +87,8 @@ const getAllBook = async () => {
         renderBooks(data);
 
     } catch (error) {
-        alert(error.message)
+        // alert(error.message)
+        showError(error);
     }
 }
 
@@ -95,7 +124,8 @@ const getBook = async (isbn) => {
         setFormData(data); //조회한 도서 정보 form에 출력하기
 
     } catch (error) {
-        alert(error);
+        // alert(error);
+        showError(error);
     }
 }
 const setFormData = (book) => {
@@ -112,7 +142,7 @@ const setFormData = (book) => {
     //도서 이미지
     let str = ``;
     if (book.image) { //이미지가 있을경우
-        str += `<img src="images/${book.image}" alt="${book.title}" class="img-thumbnail">`;
+        str += `<img src="http://localhost:7777/images/${book.image}" alt="${book.title}" class="img-thumbnail">`;
     } else {//없을경우 noimgae.jpg
         str += `<img src="images/noimage.jpg"  alt="noimage" class="img-thumbnail">`;
     }
@@ -148,7 +178,8 @@ const deleteBook = async (isbn) => {
         getAllBook();
 
     } catch (error) {
-        alert(error);
+        // alert(error);
+        showError(error);
         console.error(error);
 
     }
@@ -175,20 +206,24 @@ const updateBook = async (newBook) => {
         const data = await response.json();
         console.log(data);
 
-        if (data) {
+        if (data.message === 'success') {
             getAllBook();
             clearInput();
             document.getElementById('btnUpdate').setAttribute("disabled", "disabled")
+            document.getElementById('resultMessage').style.display = 'none';
+        } else {
+            document.getElementById('resultMessage').innerHTML = `<h3>${data.message}</h3>`;
+            document.getElementById('resultMessage').style.display = 'block';
         }
 
 
     } catch (error) {
-        alert(error);
+        // alert('에러' + error);
+        showError(error);
     }
 
     //clearInput() 호출해서 초기화
-
     //수정버튼 비활성화
 }
 
-export { getAllBook, addBook, getBook, findBook, deleteBook, updateBook }
+export { getAllBook, addBook, getBook, findBook, deleteBook, updateBook, addBookFileup }
