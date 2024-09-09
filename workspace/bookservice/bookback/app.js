@@ -13,8 +13,9 @@ const bookRouter = require('./routes/booksRouter'); //내가 만든모듈은 .�
 //폴더가 없으면 bookRouter.js 파일을 찾는다.
 const userRouter = require('./routes/userRouter');
 const naverRouter = require('./routes/naverRouter');
-const indexRouter = require('./routes/indexRouter.js');
+const indexRouter = require('./routes/indexRouter');
 const bookDBRouter = require('./routes/bookDBRouter');
+const testRouter = require('./routes/testRouter');
 
 const express = require('express'); //외장 모듈은 이름만으로 불러온다. //웹관련 세팅 라이브러리
 require('dotenv').config(); //환경설정 이미 여기서 해줬는데 왜 안되지?????????/
@@ -42,6 +43,7 @@ app.use('/books', bookRouter) ///배열 사용
 app.use('/api/books', bookDBRouter) //DB연동
 app.use('/users', userRouter)
 app.use('/naver', naverRouter)
+app.use('/test', testRouter)
 
 
 app.listen(port, () => {
