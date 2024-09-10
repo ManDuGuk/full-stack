@@ -13,10 +13,10 @@ const storage = multer.diskStorage({
     }
 })
 
-const upmulter = multer({ storage });
+const upmulter = multer({ storage }); //multer 객체 생성
 router.use('/upload', express.static('upload'))
 
-router.post('/fileUp', upmulter.single("myfile"), (req, res) => {
+router.post('/fileUp', upmulter.single("myfile"), (req, res) => { //파일이 하나일땐 single이고, 여러개일때 array로 받으면된다.
 
     console.log('fileup 함수 실행');
 

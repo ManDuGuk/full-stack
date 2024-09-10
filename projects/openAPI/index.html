@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openAPI</title>
+</head>
+
+<body>
+    <div>
+        <form action="/search" name="search">
+            <input name="keyword" type="text" placeholder="아무키워드나 검색해봐">
+            <button id="searchBtn" type="submit">검색</button>
+        </form>
+        <table border="1px solid">
+            <thead>
+                <tr>
+                    <td colspan="11">전체목록</td>
+                </tr>
+                <tr>
+                    <td>
+                        id값
+                    </td>
+                    <td>
+                        이름
+                    </td>
+                    <td>
+                        상세설명
+                    </td>
+                    <td>
+                        캠핑장 종류
+                    </td>
+                    <td>
+                        위치(도군별)
+                    </td>
+                    <td>
+                        상세주소(도로명)
+                    </td>
+                    <td>
+                        좌표값X
+                    </td>
+                    <td>
+                        좌표값Y
+                    </td>
+                    <td>
+                        전화번호
+                    </td>
+                    <td>
+                        홈페이지
+                    </td>
+                    <td>
+                        소개 이미지
+                    </td>
+
+                </tr>
+            </thead>
+            <tbody id="result">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="./js/getApi.js"></script>
+</body>
+
+</html>
