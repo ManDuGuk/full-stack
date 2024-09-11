@@ -5,18 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>openAPI</title>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vrtwwx348"></script>
+    <style>
+        /* .lists tr {
+            white-space: nowrap;
+            height: 5%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        } */
+
+        .lists {
+            table-layout: fixed;
+            /* 고정 레이아웃 사용 */
+            width: 100%;
+            /* 테이블 전체 너비 설정 */
+        }
+
+        .lists td {
+            width: 30%;
+            /* 고정 너비 */
+            white-space: nowrap;
+            /* 텍스트 줄바꿈 방지 */
+            height: 5%;
+            /* 고정 높이 */
+            overflow: hidden;
+            /* 넘치는 내용 숨기기 */
+            text-overflow: ellipsis;
+            /* 넘치는 내용 말줄임 표시 */
+        }
+    </style>
 </head>
 
 <body>
-    <div>
+    <div style="height: 50vh; overflow: scroll">
         <form action="/search" name="search">
             <input name="keyword" type="text" placeholder="아무키워드나 검색해봐">
             <button id="searchBtn" type="submit">검색</button>
         </form>
-        <table border="1px solid">
+        <table border="1px solid" class="lists">
             <thead>
                 <tr>
-                    <td colspan="11">전체목록</td>
+                    <td colspan=" 11">전체목록</td>
                 </tr>
                 <tr>
                     <td>
@@ -60,7 +89,14 @@
             </tbody>
         </table>
     </div>
+    <div id="map" style="width:100%;height:400px;"></div>
 
+
+
+
+    <script>
+
+    </script>
 
     <script src="./js/getApi.js"></script>
 </body>
