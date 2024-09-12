@@ -14,6 +14,9 @@ const urlsearch = 'https://apis.data.go.kr/B551011/GoCamping/searchList?numOfRow
 //생성된 마커들을 저장할 배열
 const markers = [];
 
+//생성된 정보창들을 저장할 배열
+const infos = [];
+
 var map = new naver.maps.Map('map', {
     center: new naver.maps.LatLng(37.3595704, 127.105399),
     zoom: 8
@@ -95,8 +98,40 @@ const setPosition = (data) => {
             map: map
         });
 
+        //렌더링 해줄 코드
+        var contentString = [`
+            <div class="iw_inner">
+               <h3>${element.facltNm}</h3>
+               <p>${element.addr1}<br/>
+                   <img src="${element.firstImageUrl}" width="55" height="55" alt="캠핑장 이미지" class="thumb" /><br />
+                    <a href="${element.homepage}" target="_blank">${element.homepage}</a>
+                    <button type="button" class="lookinfo" onclick="testLog(${itemArray})">상세보기</button>
+               </p>
+            </div>`
+        ].join('');
+
+        //정보창 인스턴스 생성
+        var infowindow = new naver.maps.InfoWindow({
+            content: contentString
+        });
+
+        //정보창 클릭이벤트
+        naver.maps.Event.addListener(marker, "click", function (e) {
+            if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+            }
+        });
+
+        // 정보창을 미리 열어줄껀지 여부
+        // infowindow.open(map, marker);
+
         //생성된 마커를 추가
         markers.push(marker);
+
+        //생성된 정보창을 추가
+        infos.push(infowindow);
     });
 
 
@@ -118,6 +153,9 @@ const renderUI = (data) => {
 
     let str = "";
 
+    if (itemArray.length == 0) {
+        return false;
+    }
     //반복문
     itemArray.forEach(element => {
         str += `
@@ -140,5 +178,3 @@ const renderUI = (data) => {
     tbody.innerHTML = str;
 
 }
-
-
