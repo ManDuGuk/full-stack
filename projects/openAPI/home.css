@@ -1,0 +1,121 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     /* 모든 요소가 경계선(border)를 포함한 크기를 고려 */
+     max-width: 100%;
+ }
+
+ .lists {
+     --table-layout: fixed;
+     /* 고정 레이아웃 사용 */
+     width: 100%;
+     /* 테이블 전체 너비 설정 */
+ }
+
+ .lists td {
+     --width: 30%;
+     /* 고정 너비 */
+     white-space: nowrap;
+     /* 텍스트 줄바꿈 방지 */
+     height: 5%;
+     /* 고정 높이 */
+     overflow: hidden;
+     /* 넘치는 내용 숨기기 */
+     text-overflow: ellipsis;
+     /* 넘치는 내용 말줄임 표시 */
+ }
+
+ .listbox {
+     box-sizing: border-box;
+     background-color: white;
+     position: fixed;
+     width: 20vw;
+     left: 0;
+     height: 100vh;
+
+     z-index: 9999;
+
+     overflow-y: scroll;
+     /* 세로만 스크롤 */
+     overflow-x: hidden;
+     /* 가로 스크롤 제거 */
+ }
+
+ .searchbox {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding-left: 5%;
+     --background-color: aqua;
+     height: 7%;
+ }
+
+ .searchinput {
+     flex-grow: 1;
+     display: flex;
+     flex-wrap: nowrap;
+     gap: 3%;
+ }
+
+ .searchinput input {
+     flex-grow: 1;
+     padding-left: 10%;
+     width: 100%;
+     border: 2px solid rgb(25, 206, 96);
+     border-radius: 5px;
+ }
+
+ .cardbox {
+
+     border: 1px solid rgba(240, 240, 243, 1);
+ }
+
+ .card {
+     background-color: antiquewhite;
+     padding: 5%;
+     width: 100%;
+     height: 20%;
+ }
+
+ .card img {
+     border-radius: 16px;
+     width: 100%;
+ }
+
+ .textbox {
+     background-color: aquamarine;
+ }
+
+ .resultbox {
+     position: fixed;
+     width: 20vw;
+     height: 100vh;
+     left: 20%;
+     z-index: 999;
+ }
+
+ .resultbox .cardbox.result {
+     background-color: white;
+     height: 100vh;
+ }
+
+ .mapbox {
+
+     width: 100vw;
+     height: 100vh;
+     position: relative;
+
+ }
+
+ #infoUI {
+     position: absolute;
+     top: 0;
+     z-index: 99;
+     width: 100%;
+ }
+
+ #map {
+     width: 100%;
+     height: 100%;
+ }
