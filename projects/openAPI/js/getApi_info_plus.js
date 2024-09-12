@@ -2,6 +2,9 @@
 //그결과를 innerHtml에 뿌려주기
 
 const tbody = document.querySelector('#result');
+const cardbox = document.querySelector('.cardbox');
+const resultbox = document.querySelector('.resultbox');
+const infoUI = document.querySelector(".cardbox.result");
 
 //키값이 포함된 url --> 불러오는 갯수 5개 세팅함
 const url = 'https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=test&serviceKey=YssH2yHSdTKhkaaYIJFFKZEP%2BkykGa%2Bgb10wi4F5hZ%2BaTmuQvsdhy3uhSaRFNpvoaEG%2FVZvBmhaHJao7zf7gvA%3D%3D&_type=json';
@@ -108,19 +111,28 @@ const setPosition = (data) => {
 
         //렌더링 해줄 코드
         var contentString = [`
-            <div class="iw_inner">
-               <h3>${element.facltNm}</h3>
-               <p>${element.addr1}<br/>
-                   <img src="${element.firstImageUrl}" width="55" height="55" alt="캠핑장 이미지" class="thumb" /><br />
-                    <a href="${element.homepage}" target="_blank">${element.homepage}</a>
-                    <button type="click" class="lookinfo" onclick="goInfo('${element.facltNm}')">상세보기</button>
-               </p>
+            <div class="iw_inner infobox">
+            <div>
+            
+            <img src="${element.firstImageUrl}" width="55" height="55" alt="캠핑장 이미지" class="thumb" />
+            <div class=infotext>
+            <h2>${element.facltNm}</h2>
+            <p>${element.addr1}</p>
+            <button type="click" class="lookinfo" onclick="goInfo('${element.facltNm}')">상세보기</button>
+            </div>
+              
             </div>`
         ].join('');
 
         //정보창 인스턴스 생성
         var infowindow = new naver.maps.InfoWindow({
-            content: contentString
+            content: contentString,
+            borderColor: "#2db400",
+            borderWidth: 0,
+
+            anchorSkew: true,
+            maxWidth: 0,
+            pixelOffset: new naver.maps.Point(20, -20)
         });
 
         //정보창 클릭이벤트
@@ -175,32 +187,50 @@ const renderUI = (data) => {
     if (itemArray.length == 0) {
         return false;
     }
-    tbody.innerHTML = "";
-
-
+    // tbody.innerHTML = "";
+    cardbox.innerHTML = "";
     let str = "";
-    //반복문
     itemArray.forEach(element => {
-        str += `
-        <tr>
-         <td> <button type="click" class="lookinfo" onclick="goInfo('${element.facltNm}')">상세보기</button></td>
-            <td>${element.contentId}</td>
-            <td>${element.facltNm}</td>
-            <td>${element.featureNm}</td>
-            <td>${element.induty}</td>
-            <td>${element.doNm}</td>
-            <td>${element.addr1}</td>
-            <td>${element.mapX}</td>
-            <td>${element.mapY}</td>
-            <td>${element.tel}</td>
-            <td>${element.homepage}</td>
-            <td>${element.firstImageUrl}</td>
-           
-        </tr>
-        `;
+        str +=
+            `
+            <div class="card">
+                <!-- 이미지 -->
+                <div class="imgbox">
+                    <img src="${element.firstImageUrl}" alt="캠핑장">
+                </div>
+                <!-- 텍스트 -->
+                <div class="textbox">
+                    <p class="title">${element.facltNm}<span class="location">${element.doNm}</span></p>
+                    <p class="address"> ${element.addr1}</p>
+                    <p class="etc">Tel) ${element.tel} <a class="link" href="${element.homepage}">홈페이지</a></p>
+                </div>
+            </div>
+            `
     });
+    cardbox.innerHTML = str;
 
-    tbody.innerHTML = str;
+    //반복문
+    // itemArray.forEach(element => {
+    //     str += `
+    //     <tr>
+    //      <td> <button type="click" class="lookinfo" onclick="goInfo('${element.facltNm}')">상세보기</button></td>
+    //         <td>${element.contentId}</td>
+    //         <td>${element.facltNm}</td>
+    //         <td>${element.featureNm}</td>
+    //         <td>${element.induty}</td>
+    //         <td>${element.doNm}</td>
+    //         <td>${element.addr1}</td>
+    //         <td>${element.mapX}</td>
+    //         <td>${element.mapY}</td>
+    //         <td>${element.tel}</td>
+    //         <td>${element.homepage}</td>
+    //         <td>${element.firstImageUrl}</td>
+
+    //     </tr>
+    //     `;
+    // });
+
+    // tbody.innerHTML = str;
 
 }
 
@@ -217,7 +247,50 @@ document.querySelector("#testbtn").addEventListener("click", () => {
 //     console.log(lookinfoButtons);
 // })
 
+//레더링 함수는 그대로 두고
+function makeinfoUI(data) {
+
+    infoUI.innerHTML = "";
+    let str =
+        `
+            <div class="card">
+                <!-- 이미지 -->
+                <div class="imgbox">
+                    <img src="${data.firstImageUrl}" alt="캠핑장">
+                </div>
+                <!-- 텍스트 -->
+                <div class="textbox">
+                    <p class="title">${data.facltNm}<span class="location">${data.doNm}</span></p>
+                    <p class="address"> ${data.addr1}</p>
+                    <p class="etc">Tel) ${data.tel} <a class="link" href="${data.homepage}">홈페이지</a></p>
+                    <p class="describe">${data.featureNm}</p>
+                </div>
+            </div>
+            `;
+
+
+
+    // let str = `
+    // <P>${data.contentId}</P>
+    // <P>${data.facltNm}</P>
+    // <P>${data.featureNm}</P>
+    // <P>${data.induty}</P>
+    // <P>${data.doNm}</P>
+    // <P>${data.addr1}</P>
+    // <P>${data.mapX}</P>
+    // <P>${data.mapY}</P>
+    // <P>${data.tel}</P>
+    // <P>${data.homepage}</P>
+    // <P>${data.firstImageUrl}</P>
+    // `;
+
+    infoUI.innerHTML = str;
+
+
+}
+
 function goInfo(data) {
+    resultbox.classList.add("movetoleft");
 
     //여기서 좌표값으로 지도 이동시키고 중심 이동시키고 줌땡기기 조절해주기
 
@@ -252,30 +325,15 @@ function goInfo(data) {
         .catch((error) => {
             alert(error);
         })
+
+
+
+}
+
+
+function canclebtn() {
+    resultbox.classList.remove("movetoleft");
 }
 
 
 
-//레더링 함수는 그대로 두고
-const makeinfoUI = (data) => {
-
-    let infoUI = document.querySelector("#infoUI");
-    infoUI.innerHTML = "";
-
-    let str = `
-    <P>${data.contentId}</P>
-    <P>${data.facltNm}</P>
-    <P>${data.featureNm}</P>
-    <P>${data.induty}</P>
-    <P>${data.doNm}</P>
-    <P>${data.addr1}</P>
-    <P>${data.mapX}</P>
-    <P>${data.mapY}</P>
-    <P>${data.tel}</P>
-    <P>${data.homepage}</P>
-    <P>${data.firstImageUrl}</P>
-    `;
-
-    infoUI.innerHTML = str;
-
-}

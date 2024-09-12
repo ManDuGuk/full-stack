@@ -7,6 +7,9 @@
     <title>openAPI</title>
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vrtwwx348"></script>
     <link rel="stylesheet" href="./home.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -14,126 +17,31 @@
 
         <form action="/search" name="search" class="searchbox">
             <div class="searchinput">
-                <input name="keyword" type="text" placeholder="아무키워드나 검색해봐">
-                <button id="searchBtn" type="submit" class="button_search">검색</button>
+                <input id="inputval" name="keyword" type="text" placeholder="아무키워드나 검색해봐">
+                <button id="searchBtn" type="submit" class="button_search"><span class="material-symbols-outlined"
+                        style="color: white; font-size: 140%;">
+                        search
+                    </span></button>
             </div>
             <!-- <button type="button" id="testbtn">테스트</button> -->
         </form>
 
         <!-- 카드 모음 -->
-        <div class="cardbox">
-            <!-- 카드형 -->
-            <div class="card">
+        <div class="cardbox"></div>
 
-                <!-- 이미지 -->
-                <div class="imgbox">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-13.jpg" alt="이미지 없음">
-                </div>
-                <!-- 텍스트 -->
-                <div class="textbox">
-                    <p>시로푸딩</p>
-                    <p>내용</p>
-                    <p>가격</p>
-                </div>
-            </div>
-            <div class="card">
-
-                <!-- 이미지 -->
-                <div class="imgbox">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-13.jpg" alt="이미지 없음">
-                </div>
-                <!-- 텍스트 -->
-                <div class="textbox">
-                    <p>시로푸딩</p>
-                    <p>내용</p>
-                    <p>가격</p>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- <table border="1px solid" class="lists">
-            <thead>
-                <tr>
-                    <td colspan=" 11">전체목록</td>
-                </tr>
-                <tr>
-                    <td>
-                        상세보기
-                    </td>
-                    <td>
-                        id값
-                    </td>
-                    <td>
-                        이름
-                    </td>
-                    <td>
-                        상세설명
-                    </td>
-                    <td>
-                        캠핑장 종류
-                    </td>
-                    <td>
-                        위치(도군별)
-                    </td>
-                    <td>
-                        상세주소(도로명)
-                    </td>
-                    <td>
-                        좌표값X
-                    </td>
-                    <td>
-                        좌표값Y
-                    </td>
-                    <td>
-                        전화번호
-                    </td>
-                    <td>
-                        홈페이지
-                    </td>
-                    <td>
-                        소개 이미지
-                    </td>
-
-
-                </tr>
-            </thead>
-            <tbody id="result">
-
-            </tbody>
-        </table> -->
 
     </div>
 
     <div class="resultbox">
+        <button onclick="canclebtn()">
+            <span class="material-symbols-outlined cancle">
+                arrow_circle_left
+            </span>
+        </button>
         <div class="cardbox result">
             <!-- 카드형 -->
-            <div class="card">
 
-                <!-- 이미지 -->
-                <div class="imgbox">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-13.jpg" alt="이미지 없음">
-                </div>
-                <!-- 텍스트 -->
-                <div class="textbox">
-                    <p>시로푸딩</p>
-                    <p>내용</p>
-                    <p>가격</p>
-                </div>
-            </div>
-            <div class="card">
 
-                <!-- 이미지 -->
-                <div class="imgbox">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-13.jpg" alt="이미지 없음">
-                </div>
-                <!-- 텍스트 -->
-                <div class="textbox">
-                    <p>시로푸딩</p>
-                    <p>내용</p>
-                    <p>가격</p>
-                </div>
-            </div>
         </div>
     </div>
 
