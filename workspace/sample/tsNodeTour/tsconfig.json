@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",            // 자바스크립트 타겟 버전
+    "module": "commonjs",        // 모듈 시스템 (Node.js는 commonjs)
+    "rootDir": "./src",          // TypeScript 소스 파일이 위치한 폴더
+    "outDir": "./dist",          // 컴파일된 JavaScript 파일의 출력 폴더
+    "strict": true,              // 엄격한 타입 검사
+    "esModuleInterop": true      // ES 모듈과의 호환성
+  },
+  "include": ["src/**/*.ts"],     // 포함할 파일 경로
+  "exclude": ["node_modules"]     // 제외할 파일 경로
+}

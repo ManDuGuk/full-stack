@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TourAPI</title>
+        <link rel="stylesheet" type="text/css" href="/css/tour.css">
+        
+    </head>
+    <body>
+        <div id="container">
+            <h1>TourAPI를 이용한 관광지 정보 검색</h1>
+            <div id="searchDiv">
+                <label for="areaCode">지역 코드 입력:</label>
+                <input type="text" id="areaCode" placeholder="예: 1" />
+                <button onclick="getTourInfo()">지역정보 검색</button>
+                <h2>검색 결과</h2>
+            </div>
+            <!-- 관광지 목록 보여줄 곳 -->
+            <div id="results"></div>
+            <!-- 모달로 관광지 상세정보 보여주기 위한 구조 -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div id="imgDiv"></div>
+                    <!-- <img id="modalImage" class="modal-image" src="" alt="이미지" /> -->
+                    <div id="modalContent">
+                        <!-- 상세 정보가 여기에 표시됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/tour.js" type="module"></script>
+</body>
+</html>        
