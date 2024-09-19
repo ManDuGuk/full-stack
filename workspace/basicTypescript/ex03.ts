@@ -15,12 +15,14 @@ console.log(obj);
  * 
  */
 
- interface Person{
+ interface myPerson{
     name:string;
     age:number;
     height:number|undefined;
-    profile:string[]|undefined
+    profile:string[]|undefined;
  }
+
+ let test:myPerson={name:"쉬비",age:33,height:55,profile:["test","test2"]};
 
  //person타입의 변수선언하고 속성값 할당하세요
  let p1:Person={name:'쉬늬',age:53,height:undefined,profile:['앱개발1',"풀3"]}
