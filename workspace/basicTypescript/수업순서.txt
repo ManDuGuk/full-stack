@@ -1,0 +1,10 @@
+폴더명
+- ex01: 타입주석 관련
+- ex02: 타입주석/타입추론 관련
+- ex03: 인터페이스/type 관련
+- ex04: 클래스/상속/타입단언/추상클래스 관련
+- ex05: 함수구성/함수호출
+- myutil: 함수를 구성하여 모듈화
+- ex06: tuple타입
+- ex07: Generic/ 대수 데이터 타입(algebraic data type)==> Union|Intersect 
+- ex08: 타입 가드
