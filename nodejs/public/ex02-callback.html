@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-color: yellow;
+            text-align: center;
+            padding: 0 auto;
+            position: relative;
+            left: 0;
+            /* left: 50%; */
+            top: calc(50vh - 100px);
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <div id="box">box</div>
+    <button id="moveBtn">이동</button>
+    <script>
+        let btn = document.querySelector("#moveBtn")
+        let box = document.querySelector("#box");
+
+        //변수선언 및 초기화
+        //var는 window의 멤버속성으로 등록, let,const은 지역성
+        //최상위 객체 -->window, 노드에서는 글로벌
+        //자바 최상위 클래스는 오브젝트
+        var aname = 0;
+        let aname2 = "hello"
+
+        console.dir(window);
+
+        btn.addEventListener("click", () => {
+            console.log("클릭됨");
+
+            aname += 30;
+            box.style.backgroundColor = 'blue';
+            box.style.left = aname + "px";
+
+
+        }, false)
+
+
+
+
+    </script>
+</body>
+
+</html>

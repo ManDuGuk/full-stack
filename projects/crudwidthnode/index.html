@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사원게시판</title>
+    <style>
+        table {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inputs">
+            <form action="/" method="get" class="create-worker">
+                <!-- 라벨은 id 따라가네 -->
+                <label for="worker-name">이름</label>
+                <input type="text" name="worker-name" id="worker-name"><br>
+                <label for="worker-dept">부서</label>
+                <input type="text" name="worker-dept" id="worker-dept"><br>
+                <label for="worker-rank">직책</label>
+                <input type="text" name="worker-rank" id="worker-rank"><br>
+                <button type="submit">생성</button>
+            </form>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>셀렉트박스</th>
+                        <th>번호</th>
+                        <th>사원명</th>
+                        <th>직급</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>셀렉트박스</th>
+                        <th>01</th>
+                        <th>박태호</th>
+                        <th>기획부</th>
+                        <th><button>수정</button></th>
+                        <th><button>삭제</button></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

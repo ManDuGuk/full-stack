@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/10.13.2/firebase-app-compat.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/10.13.2/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-functions-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-messaging-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-storage-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-analytics-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-remote-config-compat.js"></script>
+  <script defer src="/__/firebase/10.13.2/firebase-performance-compat.js"></script>
+  <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+</head>
+
+<body>
+  <h1>사원 관리 목록</h1>
+  name: <input type="text" name="name" id="name" value="kim" /><br />
+  dept: <input type="text" name="dept" id="dept" value="관리부" /><br />
+  email: <input type="text" name="email" id="email" value="kim@gamil.com" /><br />
+  job: <input type="text" name="job" id="job" value="매니저" /><br />
+  <button id="insertBtn">저장하기</button>
+  <hr />
+  <ul id="userList">
+    <li>김길동 | kim@naver.com | 영업부</li>
+  </ul>
+
+  <script>
+    function deleteUser(btn) {
+
+      const app = firebase.app();
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      function reselectAll() {
+        db.collection("users").get().then((querySnapshot) => {
+          userList = [];
+          querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data());
+            let userData = doc.data();
+            userData.id = doc.id;
+            userList.push(userData);
+          });
+          // promise 실행 순서 중요...
+          redrawList(userList);
+        });
+      }
+
+      function redrawList(userList) {
+        console.log(userList);
+        var html = ""; // 변수 초기화
+        for (var i = 0; i < userList.length; i++) {
+          let user = userList[i];
+          html += `<li>${user.name} | ${user.email} | ${user.dept} <button data-id="${user.id}" onclick="deleteUser(this)">Delete</button></li>`;
+        }
+        document.querySelector("#userList").innerHTML = html;
+      }
+
+
+      console.log(">>> deleteUser click ... btn id: ", btn.dataset.id);
+
+      db.collection("users").doc(btn.dataset.id).delete().then(() => {
+        console.log("Document successfully deleted!");
+        reselectAll();
+      }).catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        const app = firebase.app();
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+        //console.log(app);
+        console.log(db);
+        //console.log(storage);
+
+        var userList = [];
+
+        function selectAll() {
+          db.collection("users").get().then((querySnapshot) => {
+            userList = [];
+            querySnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              //console.log(doc.id, " => ", doc.data());
+              let userData = doc.data();
+              userData.id = doc.id;
+              userList.push(userData);
+            });
+            // promise 실행 순서 중요...
+            drawList(userList);
+          });
+        }
+        selectAll();
+
+
+
+        function drawList(userList) {
+          console.log(userList);
+          var html = ""; // 변수 초기화
+          for (var i = 0; i < userList.length; i++) {
+            let user = userList[i];
+
+            //여기다가 deleteUser함수랑, 이벤트 리스너를 박아버리면 될듯?
+            html += `<li>${user.name} | ${user.email} | ${user.dept} <button data-id="${user.id}" onclick="deleteUser(this)">Delete</button></li>`;
+
+          }
+          document.querySelector("#userList").innerHTML = html;
+        }
+
+        // let newData = {
+        //     dept: "교육",
+        //     email: "comstudy21@naver.com",
+        //     job: "강사",
+        //     name: "김범준"
+        // }
+
+        function insertUser(newData) {
+          db.collection("users").add(newData).then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            // 입력 후 목록 갱신 ...
+            selectAll();
+          }).catch((error) => {
+            console.error("Error adding document: ", error);
+          });
+        }
+
+        document.getElementById("insertBtn").onclick = function () {
+          console.log("clicked ...")
+          let newData = {
+            dept: document.getElementById("dept").value,
+            email: document.getElementById("email").value,
+            job: document.getElementById("job").value,
+            name: document.getElementById("name").value
+          }
+
+          console.log(newData);
+          insertUser(newData);
+        }
+
+
+        function deleteUser(btn) {
+
+          const app = firebase.app();
+          const db = firebase.firestore();
+          const storage = firebase.storage();
+
+
+          console.log(">>> deleteUser click ... btn id: ", btn.dataset.id);
+
+          db.collection("users").doc(btn.dataset.id).delete().then(() => {
+            console.log("Document successfully deleted!");
+            selectAll();
+          }).catch((error) => {
+            console.error("Error removing document: ", error);
+          });
+
+        }
+
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+
+  <script type="module">
+    const firebaseConfig = {
+      apiKey: "AIzaSyCk_-3Mry5vlfVFdAovWXpfjsKh3RF-Tl8",
+      authDomain: "nam2024-372b0.firebaseapp.com",
+      projectId: "nam2024-372b0",
+      storageBucket: "nam2024-372b0.appspot.com",
+      messagingSenderId: "417988875626",
+      appId: "1:417988875626:web:a4a825c8ba8b8c2bd1c113"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</body>
+
+</html>

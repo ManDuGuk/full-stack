@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box,
+        #box2,
+        #box3 {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-color: yellow;
+            text-align: center;
+            padding: 0 auto;
+            position: relative;
+            left: 0;
+            /* left: 50%; */
+            top: calc(50vh - 100px);
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <div id="box">box</div>
+    <div id="box2">box</div>
+    <div id="box3">box</div>
+    <button id="moveBtn">이동</button>
+    <script>
+        let btn = document.querySelector("#moveBtn")
+
+        var aname = 0;
+        let aname2 = "hello"
+        var targetX = 100;
+        var speed = 20;
+
+        // console.dir(window);
+
+
+        function moveElement(seletor, aname, speed, targetX, callback) {
+            let box = document.querySelector(seletor);
+            box.callback = callback; //박스안에 콜백넣기
+            var interbalRef = setInterval(
+                () => {
+                    console.log("클릭됨");
+
+                    aname += speed;
+                    box.style.backgroundColor = 'blue';
+                    box.style.left = aname + "px";
+
+                    if (aname >= targetX) {
+                        clearInterval(interbalRef);
+
+                        // 콜백함수에서 
+                        box.callback();
+                    }
+
+
+                }, 500
+            );
+        }
+        btn.addEventListener("click", function () {
+            moveElement("#box", 0, 20, 100, function () {
+
+                // alert("동작완료");
+                // box.style.backgroundColor = "red"
+                //윈도우 객체가 나옴
+                console.log(this);
+
+                //
+                this.style.backgroundColor = "red"
+            });
+        });
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

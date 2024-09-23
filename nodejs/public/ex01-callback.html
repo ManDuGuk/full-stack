@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-color: yellow;
+            text-align: center;
+            padding: 0 auto;
+            position: relative;
+            left: 50%;
+            top: calc(50vh - 100px);
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <div id="box">box</div>
+    <button id="moveBtn">이동</button>
+    <script>
+        let btn = document.querySelector("#moveBtn")
+        let box = document.querySelector("#box");
+
+        //dom 참조 확인
+        console.log(box);
+        console.dir(box.style);
+        console.dir(btn);
+
+
+        //--의사코드--
+        //1.버튼 이벤트 반응 확인
+        //2.특정 요소 셀렉트(dom확인)
+        //3.특정 오소의 속성 변경
+
+        /*
+        btn.addEventListener("click", () => {
+            console.log("클릭됨");
+
+            box.style.backgroundColor = 'blue';
+            box.style.left = '70%';
+
+            btn.innerHTML = "이동해라"
+        })
+        */
+
+        /*
+          btn.addEventListener("click", () => {
+              console.log("클릭됨");
+  
+              box.style.backgroundColor = 'blue';
+              box.style.left = '70%';
+  
+              btn.innerHTML = "이동해라"
+          },false) - 이벤트 버블링,캡처링 막아줌
+          */
+
+
+        btn.onclick = function () {
+            // alert("버튼 눌러 졌다.");
+            console.log(">> 버튼 눌러짐");
+            box.style.backgroundColor = 'blue';
+            box.style.left = '70%';
+            box.style.left = 70 + '%'; //문자열 연결 연산자
+
+            btn.innerHTML = "이동해라"
+        }
+
+
+        /*
+        btn.onclick = ()=>{
+
+        }
+        */
+
+
+    </script>
+</body>
+
+</html>
