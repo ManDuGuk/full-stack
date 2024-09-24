@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("head.ejs") %>
+
+    <body>
+        <div class="container">
+
+            <h1>새 자동차 입력</h1>
+
+            <p>
+                <%- include("carmenu.ejs") %>
+            </p>
+            <div>
+                <form action="/car/input" method="post" enctype="application/x-www-form-urlencoded">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>name</th>
+                                <td><input type="text" name="name" value="samsung" class="form-control"
+                                        class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>가격</th>
+                                <td><input type="text" name="price" value="kt" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>company</th>
+                                <td><input type="text" name="company" value="kia" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>year</th>
+                                <td><input type="text" name="year" value="2024" class="form-control"></td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">
+                                    <input type="submit" value="SAVE" class="btn btn-primary">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div>
+                <%- include("bottom.ejs") %>
+            </div>
+        </div>
+    </body>
+
+</html>

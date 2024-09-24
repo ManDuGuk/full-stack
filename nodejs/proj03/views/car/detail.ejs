@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("head.ejs") %>
+
+    <body>
+        <div class="container">
+            <h1>자동차 상세 보기</h1>
+            <p><%- include("carmenu.ejs") %></p>
+            <div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr></tr>
+                        <th>ID</th>
+                        <td>
+                            <%= car._id %>
+                        </td>
+                        </tr>
+                        <tr>
+                            <th>NAME</th>
+                            <td>
+                                <%= car.name %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>PRICE</th>
+                            <td>
+                                <%= car.price %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>COMPANY</th>
+                            <td>
+                                <%= car.company %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>YEAR</th>
+                            <td>
+                                <%= car.year %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><%- include("bottom.ejs") %></p>
+        </div>
+    </body>
+
+</html>

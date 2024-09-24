@@ -1,0 +1,19 @@
+bookFront /
+bookDB.html
+   +----bookUI2.js
+	+---bookApi2.js (api통신 담당)
+==============================
+bookBack/
+     +---public
+     +---routes
+	+---bookRouter.js : 도서 서비스 관련 로직 처리
+        +---userRouter.js  : 회원 서비스 관련 로직 처리
+	+---naverRouter.js : 네이버 연동한 도서 서비스 로직 처리
+    +---controller
+	+---bookController.js
+    +---model
+	+---dbPool.js
+    |
+    app.js	
+    package.json
+

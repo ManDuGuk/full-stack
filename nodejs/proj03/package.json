@@ -1,0 +1,25 @@
+{
+  "name": "proj03",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cores": "^0.8.5",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "serve-static": "^1.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
