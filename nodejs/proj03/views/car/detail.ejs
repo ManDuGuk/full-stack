@@ -9,11 +9,11 @@
             <div>
                 <table class="table table-hover">
                     <tbody>
-                        <tr></tr>
-                        <th>ID</th>
-                        <td>
-                            <%= car._id %>
-                        </td>
+                        <tr>
+                            <th>ID</th>
+                            <td>
+                                <%= car._id %>
+                            </td>
                         </tr>
                         <tr>
                             <th>NAME</th>
@@ -41,6 +41,16 @@
                         </tr>
                     </tbody>
                 </table>
+                <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/car/modify?_id=<%=car._id %>">수정</a>
+                        </li>
+                        <li class="nav-item"></li>
+                        <a class="nav-link" href="/car/delete?_id=<%=car._id %>">삭제</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <p><%- include("bottom.ejs") %></p>
         </div>

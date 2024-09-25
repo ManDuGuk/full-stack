@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <%- include("head.ejs") %>
 
     <body>
         <div class="container">
-
-            <h1>새 자동차 입력</h1>
-
-            <p>
-                <%- include("carmenu.ejs") %>
-            </p>
+            <h1>새 자동차 정보 입력</h1>
+            <p><%- include("carmenu.ejs") %></p>
             <div>
                 <form action="/car/input" method="post" enctype="application/x-www-form-urlencoded">
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <th>name</th>
-                                <td><input type="text" name="name" value="samsung" class="form-control"
-                                        class="form-control"></td>
+                                <th>NAME</th>
+                                <td><input class="form-control" type="text" name="name" value="K9"></td>
                             </tr>
                             <tr>
-                                <th>가격</th>
-                                <td><input type="text" name="price" value="kt" class="form-control"></td>
+                                <th>PRICE</th>
+                                <td><input class="form-control" type="text" name="price" value="5500"></td>
                             </tr>
                             <tr>
-                                <th>company</th>
-                                <td><input type="text" name="company" value="kia" class="form-control"></td>
+                                <th>COMPANY</th>
+                                <td><input class="form-control" type="text" name="company" value="KIA"></td>
                             </tr>
                             <tr>
-                                <th>year</th>
-                                <td><input type="text" name="year" value="2024" class="form-control"></td>
+                                <th>YEAR</th>
+                                <td><input class="form-control" type="text" name="year" value="2024"></td>
                             </tr>
                             <tr>
-
                                 <td colspan="2">
-                                    <input type="submit" value="SAVE" class="btn btn-primary">
+                                    <input class="btn btn-primary" type="submit" value="SAVE">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
             </div>
-
-            <div>
-                <%- include("bottom.ejs") %>
-            </div>
+            <p><%- include("bottom.ejs") %></p>
         </div>
     </body>
 

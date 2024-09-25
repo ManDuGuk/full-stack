@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //함수형 콤포넌트로 선언
+        function Hello() {
+            //변수,state,함수 등을 선언하는 부분
+            return (
+                // 최상위 엘리먼트를 div로 설정하면 안에 div가 중복해서 들어가게된다.
+                // <div>
+                //     <h1>hello world</h1>
+                //     <h3>환영한다</h3>
+                // </div>
+
+                //이런식으로 생략가능함
+                <>
+                    <h1>hello world</h1>
+                    <p><button onClick={function () {
+                        console.log(클릭함);
+                    }}>확인</button></p>
+                    <h3>환영한다</h3>
+                </>
+            );
+        }
+
+        const container = document.querySelector("#root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<Hello />);
+    </script>
+</body>
+
+</html>
