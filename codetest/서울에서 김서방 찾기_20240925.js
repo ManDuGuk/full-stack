@@ -1,12 +1,17 @@
 function solution(seoul) {
     //문자열 배열 
+    console.log(seoul);
 
-    let findperson = "kim";
-    seoul.forEach((item, index) => {
-        if (item == findperson) return index;
+    let position = seoul.findIndex((now) => {
+        return now.toLowerCase() == "kim"
     })
 
-    let index = 0;
-    var answer = `김서방은 ${index}에 있다`;
+    var answer = `김서방은 ${position}에 있다`;
     return answer;
 }
+
+
+let xxx = ["Jane", "Kim"];
+console.log(solution(xxx));
+
+;
