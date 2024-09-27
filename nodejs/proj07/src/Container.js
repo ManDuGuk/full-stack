@@ -163,7 +163,7 @@ const Container = () => {
         // 여기서 키값을 준다는 의미는 리스트의 컴포넌트를 반복시키면서 고유값을 주기위한 약속이고 , li에 준다는 개념이 아니다.
         // 여기함수는 li를 반복시키는게 아니라 컴포넌트를 반복시키면서 리스트를 생성하므로 key값을 줘야된다.
         return todolist.map((todo, i) => {
-            return (<LisComponent key={todo._id} todo={todo} todolist={todolist} setTodoList={setTodoList} toggleTodo={toggleTodo} />)
+            return (<LisComponent key={todo._id} todo={todo} todolist={todolist} setTodoList={setTodoList} toggleTodo={toggleTodo} editTitle={editTitle} />)
         });
     }
 
@@ -176,13 +176,59 @@ const Container = () => {
         setTodoList(nowList);
     }
 
+    const [curTitle, setCurTitle] = useState("");
 
+    //어떤요소가 선택되었는지 알려주기위한
+    const [selectTodo, setSelectTodo] = useState({});
 
+    //이벤트 핸들러는 자동으로 이벤트 객체?가 알아서 생성된다. 그래서 argument에 담을수 잇는 변수인 e를 넣으면 사용할수 있다.
+    const editOkHandler = (value, selectTodo) => {
+        //수정완료기능
+        console.log("editOkHandler - container: ", curTitle);
+        console.dir(selectTodo);
+        console.log(selectTodo._id);
+
+        let currvalue = value;
+        console.log(currvalue);
+
+        // 강의코드
+        // selectTodo에서 _id 참조해서 todoList의 몇번째 index인지 찾기
+        const selectId = selectTodo._id;
+        const idx = todolist.findIndex((todo) => selectTodo._id == todo._id);
+        if (idx != -1) {
+            // state의 todoList를 복제한다.(speed 연산자)
+            const newList = [...todolist];
+            // 복제된 todoList의 요소를 새 title로 변경한다.
+            newList[idx].title = curTitle;
+            // todoList state를 수정된 내용으로 (참조를)변경한다. (적용,리렌더링)
+            setTodoList(newList);
+            setCurTitle("");
+        }
+
+        // 내가만든 코드
+        // let nowList = [...todolist];
+        // // 수정
+        // for (let i = 0; i < nowList.length; i++) {
+        //     if (nowList[i]._id == selectTodo._id) {
+        //         console.log("찾음");
+        //         nowList[i].title = currvalue;
+        //         setTodoList(nowList);
+        //     }
+        // }
+
+    }
+
+    const editTitle = (curTodo) => {
+        //todoList의 title을 선택하면작동
+        console.log("edititle() - container: ", curTodo);
+        setCurTitle(curTodo.title);
+        setSelectTodo(curTodo);
+    }
     return (
         <>
             <div className="container" style={{ marginTop: "30px" }}>
-                <h3>할일 입력</h3>
                 <p>
+                    <h3>할일 입력</h3>
 
                     {/* <input type="text" value={newTodo} onChange={inputHandler} /> */}
                     {/* //todolist 내용복제 (인라인으로 한번에 _이걸 추천한다고함) */}
@@ -190,6 +236,15 @@ const Container = () => {
                     <button onClick={buttonHandler}>save</button>
                     {newTodo}
                 </p>
+                <hr />
+                <p>
+                    <h3>수정입력</h3>
+                    {/* <input type="text" value={newTodo} onChange={inputHandler} /> */}
+                    {/* //todolist 내용복제 (인라인으로 한번에 _이걸 추천한다고함) */}
+                    <input type="text" value={curTitle} onChange={(e) => { setCurTitle(e.target.value) }} />
+                    <button onClick={(e) => { editOkHandler(curTitle, selectTodo) }}>edit</button>
+                </p>
+
                 <hr />
                 <h3>할일 목록</h3>
                 <ul>

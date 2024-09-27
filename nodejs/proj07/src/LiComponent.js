@@ -1,11 +1,11 @@
-const LisComponent = ({ todo, todolist, setTodoList, toggleTodo }) => {
+const LisComponent = ({ todo, todolist, setTodoList, toggleTodo, editTitle }) => {
 
     // 리스트에는 반드시 키를 넣어줘야한다. // 모듈로 만들어 분리되었으므로 해당 코드에서는 필요없다.
     return <li>
         <input type="checkbox" onChange={(e) => {
             toggleTodo(todo._id)
         }} checked={todo.done && "checked"} />
-        <span style={{ textDecoration: todo.done && "line-through" }}>
+        <span onClick={(e) => { editTitle(todo); }} style={{ textDecoration: todo.done && "line-through" }}>
             {todo.title}
         </span>
         <button onClick={(e) => {
