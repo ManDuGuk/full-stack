@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 150px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,11 +32,18 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.input-group {
-  padding-top: 5px;
+.checked {
+  opacity: 70%;
+  background-color: gray;
+}
+
+.notchecked {
+  opacity: 100%;
+  background-color: white;
 }
