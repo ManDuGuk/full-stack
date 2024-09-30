@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>중고 자동차 목록</h2>
+    <div>
+        <div>
+            <ul>
+                <li>차종: <input type="text" /></li>
+                <li>차종: <input type="text" /></li>
+                <li>차종: <input type="text" /></li>
+                <li>차종: <input type="text" /></li>
+            </ul>
+            <button>저장</button>
+        </div>
+        <p>10년을 타도 새차 같은 느낌!</p>
+        <p><input type="text" /><button>검색</button></p>
+        <table id="root">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>COMPANY</th>
+                    <th>YEAR</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        // Ajax를 이용해서 proj09nodeserver로 접속.
+        // http://localhost:3035
+        // XMLHttpRequest 객체를 이용한 Ajax 접속
+        const xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function() {}
+        console.dir(xhr);
+        xhr.addEventListener('readystatechange', (e) => {
+            //console.log(">>> 여기가 나중에:", xhr.status, xhr.readyState);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                //console.log(xhr.responseText);
+                const carList = JSON.parse(xhr.responseText.trim());
+                //console.log(carList[0].name);
+                let html = "";
+                let trTemp = "";
+                carList.forEach(car => {
+                    trTemp += `<tr>
+                        <td>${car.id}</td>
+                        <td>${car.name}</td>
+                        <td>${car.price}</td>
+                        <td>${car.company}</td>
+                        <td>${car.year}</td>
+                    </tr>`;
+                    html += trTemp;
+                });
+                document.getElementById('tbody').innerHTML = trTemp;
+            }
+        });
+
+        const method = "GET";
+        const url = " http://localhost:3035/products";
+        xhr.open(method, url, true);
+        xhr.send();
+
+
+        //저장 검색 삭제가 없음
+    </script>
+</body>
+
+</html>
