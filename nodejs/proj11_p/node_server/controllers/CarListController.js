@@ -57,7 +57,9 @@ module.exports.modifyCarById = (req, res) => {
     const id = req.params.id;
     const updateCar = {
         id: id,
-        title: req.body.title,
+        name: req.body.name,
+        price: req.body.price,
+        maker: req.body.maker
     };
 
     try {

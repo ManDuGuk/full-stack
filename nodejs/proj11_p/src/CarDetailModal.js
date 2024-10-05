@@ -1,4 +1,26 @@
+import { useContext } from "react";
+import { MyContext } from "./App";
+
 const CarDetailModal = () => {
+
+    const { getCar } = useContext(MyContext);
+
+    // 굳이 할필요없음, 물론 추가적인 데이터를 받아와야하면 필요하겠지만?
+
+    // // 노드 서버와 통신 get요청
+    // async function getdataById() {
+    //     try {
+    //         const { data } = await axios.get(`http://localhost:3035/carList/${car.id}`);
+    //         console.log("id로 불러오기 통신됨");
+
+    //         setCar({ ...getCar, ...data })
+    //     } catch (error) {
+    //         console.error('오류 발생:', error);
+    //     }
+    // }
+    // getdataById();
+
+
     return (<>
         {/* <!-- 모달 검정박스 --> */}
         <div className="modal fade" id="detailModal">
@@ -19,24 +41,24 @@ const CarDetailModal = () => {
                             <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    {/* <td>{modalData._id}</td> */}
+                                    <td>{getCar.id}</td>
                                 </tr>
                                 <tr>
                                     <th>NAME</th>
-                                    {/* <td>{modalData.name}</td> */}
+                                    <td> {getCar.name}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>MAKER</th>
+                                    <td>{getCar.maker}</td>
+
                                 </tr>
                                 <tr>
                                     <th>PRICE</th>
-                                    {/* <td>{modalData.price}</td> */}
+                                    <td>{getCar.price}</td>
+
                                 </tr>
-                                <tr>
-                                    <th>COMPANY</th>
-                                    {/* <td>{modalData.company}</td> */}
-                                </tr>
-                                <tr>
-                                    <th>YEAR</th>
-                                    {/* <td>{modalData.year}</td> */}
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
