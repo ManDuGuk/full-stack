@@ -11,7 +11,7 @@ const CarModifyModal = ({ modalData, modifyOk }) => {
     // 노드 서버와 통신 get요청
     async function modifyCarById() {
         try {
-            const { data } = await axios.post(`http://localhost:3035/carList/${getCar.id}`, getCar);
+            const { data } = await axios.post(`http://localhost:3035/carList/${getCar._id}`, getCar);
             console.log("수정하기 완료");
             setCarList(data);
         } catch (error) {
@@ -37,7 +37,7 @@ const CarModifyModal = ({ modalData, modifyOk }) => {
                             <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    <td>{getCar.id}</td>
+                                    <td>{getCar.num}</td>
                                 </tr>
                                 <tr>
                                     <th>NAME</th>

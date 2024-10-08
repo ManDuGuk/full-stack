@@ -41,7 +41,7 @@ const CarDetailModal = () => {
                             <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    <td>{getCar.id}</td>
+                                    <td>{getCar.num}</td>
                                 </tr>
                                 <tr>
                                     <th>NAME</th>

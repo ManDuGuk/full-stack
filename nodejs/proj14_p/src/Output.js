@@ -10,7 +10,6 @@ const Output = () => {
     async function getdata() {
         try {
             const { data } = await axios.get('http://localhost:3035/carList/');
-            // console.log(data); // 데이터를 로그로 출력
             setCarList(data); // 가져온 데이터를 상태로 설정
         } catch (error) {
             console.error('오류 발생:', error);
@@ -28,7 +27,7 @@ const Output = () => {
         return (
             carList.map((car) => {
                 return <CarItem
-                    key={car.id}
+                    key={car._id}
                     car={car} />
             })
         );

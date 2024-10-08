@@ -14,7 +14,8 @@ const App = () => {
 
     //객체 스테이트 --> 데이터 조작용
     const [getCar, setCar] = useState({
-        id: null,
+        _id: "",
+        num: null,
         name: "",
         maker: "",
         price: null,
