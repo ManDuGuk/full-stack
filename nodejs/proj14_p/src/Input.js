@@ -31,17 +31,17 @@ const Input = () => {
         </div>
         <div className="input-group mb-0 input-group-lg">
             <div className="input-group-prepend">
-                <span className="input-group-text">Price</span>
-            </div>
-            <input type="number" className="form-control" value={getCar.price}
-                onChange={e => { setCar((pre) => { return { ...pre, price: e.target.value } }) }} />
-        </div>
-        <div className="input-group mb-0 input-group-lg">
-            <div className="input-group-prepend">
                 <span className="input-group-text">Maker</span>
             </div>
             <input type="text" className="form-control" value={getCar.maker}
                 onChange={e => { setCar((pre) => { return { ...pre, maker: e.target.value } }) }} />
+        </div>
+        <div className="input-group mb-0 input-group-lg">
+            <div className="input-group-prepend">
+                <span className="input-group-text">Price</span>
+            </div>
+            <input type="number" className="form-control" value={getCar.price}
+                onChange={e => { setCar((pre) => { return { ...pre, price: e.target.value } }) }} />
         </div>
 
         <div className="input-group mb-0 input-group-lg">

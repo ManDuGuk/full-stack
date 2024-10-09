@@ -5,15 +5,17 @@ import { MyContext } from "./App";
 
 const CarItem = ({ car }) => {
 
-    console.log(car);
+    // console.log(car);
 
     const { setCarList, setCar } = useContext(MyContext);
 
     async function deleteDate() {
         try {
-            console.log(`삭제 요청: http://localhost:3035/carList/${car._id}`); // 로그 추가
+            //_id값은 잘 받는거 확인함
+            // console.log(`삭제 요청: http://localhost:3035/carList/${car._id}`);
+            // 해당 요청이 가지 않는 문제가 발생
             const response = await axios.delete(`http://localhost:3035/carList/${car._id}`);
-            console.log('delete 요청 성공:', response.data);
+            console.log('delete 요청 성공:', response);
             setCarList(response.data);
         } catch (error) {
             console.error('오류 발생:', error);

@@ -5,26 +5,26 @@ const carDao = require('../models/carModel');
 
 module.exports.getAllCar = async (req, res) => {
     try {
-        //findAll이 비동기 함수이기 때문에 해당 처리도 await으로 처리해줘야지 아니면 
-        //undefined가 담기게 된다.
-        const carList = await carDao.findAll(); // await 추가
-        res.status(200).json(carList);
+        const carList = await carDao.findAll();
+        res
+            .status(200)
+            .json(carList);
     } catch (error) {
-        res.status(500).json({ "message": "getAlltodo오류" });
+        res.status(500).json({ "message": "getAllCar오류" });
     }
 }
 
-module.exports.getCarById = async (req, res) => {
+module.exports.getCarById = (req, res) => {
     //요청 url에 넘어가는 params데이터에서 뽑아낸다.
-    const id = req.params._id
+    const id = req.params.id
     console.log(id);
 
     try {
-        const car = await carDao.findById(id)
+        const car = carDao.findById(id)
         res.status(200).json(car)
 
     } catch (error) {
-        res.status(500).json({ "message": "getTodoById오류" });
+        res.status(500).json({ "message": "getCarById 오류" });
     }
 }
 
@@ -45,7 +45,7 @@ module.exports.createCar = async (req, res) => {
         const carList = await carDao.findAll();
         res.status(200).json(carList);
     } catch (error) {
-        res.status(500).json({ "message": "createTodo오류" });
+        res.status(500).json({ "message": "createCar 오류" });
     }
 }
 
@@ -54,9 +54,9 @@ module.exports.modifyCarById = async (req, res) => {
     //dao에서 id로 조회해야되니까 id도 같이 넘긴다.
 
     // URL 파라미터에서 ID를 가져오고 요청 본문에서 수정할 내용을 가져옴
-    const id = req.params._id;
+    const id = req.params.id;
     const updateCar = {
-        id: id,
+        _id: id,
         name: req.body.name,
         price: req.body.price,
         maker: req.body.maker
@@ -67,20 +67,35 @@ module.exports.modifyCarById = async (req, res) => {
         const carList = await carDao.findAll();
         res.status(200).json(carList);
     } catch (error) {
-        res.status(500).json({ "message": "modifyTodoById 오류" })
+        res.status(500).json({ "message": "modifyCarById 오류" })
     }
 }
 
 module.exports.deleteCarById = async (req, res) => {
 
+    const id = req.params.id;
+
     try {
-        console.log("확인");
-        const id = req.params._id
-        console.log("넘어온파라미터 id" + id);
-        await carDao.delete(id);
-        const carList = await carDao.findAll();
+        const carList = await carDao.delete(id);
         res.status(200).json(carList);
     } catch (error) {
-        res.status(500).json({ "message": "deleteTodoById 오류" })
+        res.status(500).json({ "message": "deleteCarById 오류" })
+    }
+}
+
+// 삭제테스트용
+module.exports.test = async (req, res) => {
+    // res.send("삭제요청됨 테스트 함수임")
+    // console.log("삭제요청됨 테스트 함수임"); //이건또 안나오네? 왜?
+
+    // id는 넘어오는거 확인함
+    // res.send(id)
+    const id = req.params.id;
+
+    try {
+        const carList = await carDao.delete(id);
+        res.status(200).json(carList);
+    } catch (error) {
+        res.status(500).json({ "message": "modifyTodoById 오류" })
     }
 }

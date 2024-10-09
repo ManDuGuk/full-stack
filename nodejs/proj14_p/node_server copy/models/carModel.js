@@ -1,4 +1,3 @@
-//몽고 디비 연결 테스트
 const mongoose = require('mongoose');
 // 기본 27017 포트에 myapp이 디비 이름임
 mongoose.connect('mongodb://localhost:27017/myapp', {
@@ -20,41 +19,19 @@ const carSchema = new mongoose.Schema({
 
 const Car = mongoose.model('Car', carSchema);
 
-//아래와 같은 비동기 처리는 순서가 보장되지 않음으로 await으로 처리할것!!
-//데이터 저장
-// (async () => {
-//     try {
-//         await Car.insertMany([
-//             { num: 1, name: "차1", maker: "현대1", price: 1000 },
-//             { num: 2, name: "차2", maker: "현대2", price: 2000 },
-//             { num: 3, name: "차3", maker: "현대3", price: 3000 },
-//             { num: 4, name: "차4", maker: "현대4", price: 4000 }
-//         ])
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })()
-
 
 Car.find()
     .then((result) => console.log(result))
     .catch(err => console.log(err));
 
-// 모든 데이터 삭제 위에 생성문을 저장할때마다 중복저장됨 ㅋㅋ
-// Car.deleteMany({})
-//     .then(() => console.log("모든 데이터가 삭제되었습니다."))
-//     .catch(err => console.log(err));
-
 
 //임시로 설정한 자료
-//디비가 연동되었으니 불필요
 // let carList = [
 //     { id: 1, name: "차1", maker: "현대1", price: 1000 },
 //     { id: 2, name: "차2", maker: "현대2", price: 2000 },
 //     { id: 3, name: "차3", maker: "현대3", price: 3000 },
 //     { id: 4, name: "차4", maker: "현대4", price: 4000 },
 // ];
-
 
 let autoId = 5;
 
@@ -100,20 +77,41 @@ const carModel = {
     },
     update: async (obj) => {
         try {
-            await Car.updateOne({ _id: mongoose.Types.ObjectId(obj.id) }, { $set: obj })
-            return "car 수정되었음";
+            const { _id } = obj;
+            let result = await Car.findByIdAndUpdate(_id, obj)
+            if (result.modifiedCount === 0) {
+                return "Car not found";
+            }
+            return "update complete"
         } catch (error) {
             console.log(error);
-            throw error;
+            return "update not rigth query";
         }
     },
     delete: async (id) => {
+
+        // return id
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return "Invalid ID format";
+        }
+
+        // else {
+        //     //위에 걸리지 않는걸 봐선 형식이 잘못된건 아님
+        //     return id;
+        // }
+
         try {
-            await Car.deleteOne({ _id: mongoose.Types.ObjectId(id) });
-            return "car 삭제되었음"
+            const result = await Car.deleteOne({ _id: id });
+            if (result.deletedCount === 0) {
+                return "Car not found";
+            }
+            // 성공적으로 처리되었다면 전체목록을 반환
+            return await Car.find();
+            // return "Car deleted successfully"
         } catch (error) {
-            console.log(error);
-            throw error;
+            console.error(error);
+            return "Error deleting car";
         }
     }
 

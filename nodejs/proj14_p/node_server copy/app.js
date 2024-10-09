@@ -10,6 +10,12 @@ app.use(express.json()); //bodyparser
 app.use(express.urlencoded({ extended: false })); //단순데이터 처리
 app.set('port', 3035);
 
+// 한글 처리 필터 미들웨어
+// res.send() 사용시 필요 없음.
+// app.use((req, res, next)=> {
+//     res.writeHead(200, {'Content-type': 'text/html; charset=UTF-8'});
+//     next();
+// });
 
 //라우터 설정
 app.use(carListRouter);
