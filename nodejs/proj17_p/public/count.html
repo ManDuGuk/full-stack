@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 접속 카운트</title>
+</head>
+
+<body>
+
+    <h1>실시간 접속 카운트</h1>
+    <input id="chatinput" type="text"><button id="chatbtn" type="button">전송</button>
+    <div id="resultBox">
+        count:1<br>
+        date: 2024-2-22 9:32
+    </div>
+
+    <script>
+
+        let inputVal = document.querySelector("#chatinput");
+        let chatBtn = document.querySelector("#chatbtn");
+
+        //http://localhost:3000/count로 요청을 보내고 응답을 받는 ----------------
+        let url = "http://localhost:3000/count";
+
+        //비동기 통신을 위한 xmlrequst객체 생성
+        let xhr = new XMLHttpRequest();
+        let box = document.querySelector("#resultBox");
+
+        //채팅을 위한 빈 배열 
+        let chat = [];
+
+        //채팅을 위한 문자열
+        let log = "";
+
+        // 서버의 cnt변수와 비교하는 기능
+        // 서버의 http://localhost:3000/count로 요청이 갈때마다 cnt숫자가 하나씩 늘어나며
+        // 응답이 오면 cnt의 수로 count가 정의된다.
+        // 일반적으로 새로고침을 했을 떄 보여지는 카운트수라고 생각하면 된다.
+        let count = chat.length;
+
+        chatBtn.addEventListener('click', function () {
+            log = inputVal.value;
+            let receiveUrl = 'http://localhost:3000/count/chat/' + log;
+            let xhr2 = new XMLHttpRequest();
+            xhr2.onload = function () {
+                if (xhr2.responseText !== "") {
+                    const resData = JSON.parse(xhr2.responseText);
+                    let temp = `
+                    count: ${resData.count} <br/>
+                    date: ${resData.dateStr} <br/>
+                    chat: <br/>
+                    ${resData.char.map(item => `${item}`).join('<br/>')}
+                    `;
+                    box.innerHTML = temp;
+                    count = resData.count;
+                }
+            };
+            xhr2.open("GET", receiveUrl, true);  // GET 메서드 대문자
+            xhr2.send();
+        });
+
+
+
+
+
+        //서버와 통신이 이루어 질떄마다 호출되는 이벤트 핸들러
+        xhr.onreadystatechange = function () {
+
+            //200은 요청이 성공처리딤을 의미하고
+            // 4는 요청이 완료되었음을 의미함
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                //XMLHttpRequest 객체로부터 응답받은 제이슨문자열을 자바스크립트 객체로 변환처리
+                const resData = JSON.parse(xhr.responseText)
+                let temp = ``;
+                temp = `
+                count: ${resData.count} <br/>
+                date: ${resData.dateStr} <br/>
+                chat: <br/>
+                `;
+                if (resData.char.length != 0) {
+                    temp += `
+                    ${resData.char.forEach((item) => {
+                        return item;
+                    })}
+                    <br/>
+                    `
+                }
+
+                box.innerHTML = temp;
+                count = resData.count;
+            }
+        };
+
+        //get 요청, 해당 url주소로, true는 비동기 요청을 의미함
+        xhr.open('get', url, true);
+
+        //서버로 요청 전송
+        xhr.send();
+
+        //http://localhost:3000/count로 요청을 보내고 응답을 받는 ----------------
+
+        //a와 b유저가 각각 사용한다고 했을시 a가 새로고침을 한번하면 cnt와count는 1이된다.
+        //그러나 b유저가 새로고침을 5번 했다면 b쪽에서의 cnt와 count는 5다.
+        //setinterval로 인해서 a쪽에서 count는 1을 요청으로 넘겨주게되면
+        //b에서 cnt는 5로 만들었기 때문에 count가 반영되지 않았음을 감지하고 최신화된 cnt를 응답을 보낸다.
+        //그래서 a의 count도 5로 최신화가 되어진다.
+
+
+        //0.5초마다 http://localhost:3000/count/param으로 요청을 보내고 받는-----------------
+        let interval = setInterval(() => {
+            let receiveUrl = 'http://localhost:3000/count/' + count;
+            let xhr2 = new XMLHttpRequest();
+            xhr2.onload = function () {
+                if (xhr2.responseText !== "") {
+                    const resData = JSON.parse(xhr2.responseText);
+                    let temp = ``;
+                    temp = `
+                    count: ${resData.count} <br/>
+                    date: ${resData.dateStr} <br/>
+                    chat: <br/>
+                    `;
+                    if (resData.char.length != 0) {
+                        temp += `
+                    ${resData.char.forEach((item) => {
+                            return item;
+                        })}
+                    <br/>
+                    `
+                    }
+                    box.innerHTML = temp;
+                    count = resData.count;
+                }
+            }
+            xhr2.open("get", receiveUrl, true);
+            xhr2.send();
+        }, 500);
+
+        //0.5초마다 http://localhost:3000/count/param으로 요청을 보내고 받는-----------------
+    </script>
+
+</body>
+
+</html>
