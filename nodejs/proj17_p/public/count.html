@@ -47,21 +47,27 @@
             xhr2.onload = function () {
                 if (xhr2.responseText !== "") {
                     const resData = JSON.parse(xhr2.responseText);
-                    let temp = `
+                    let temp = ``;
+                    temp = `
                     count: ${resData.count} <br/>
                     date: ${resData.dateStr} <br/>
                     chat: <br/>
-                    ${resData.char.map(item => `${item}`).join('<br/>')}
                     `;
+                    if (resData.char.length != 0) {
+                        temp += `
+                    ${resData.char.forEach((item) => {
+                            return item;
+                        })}
+                    <br/>
+                    `
+                    }
                     box.innerHTML = temp;
                     count = resData.count;
                 }
-            };
-            xhr2.open("GET", receiveUrl, true);  // GET 메서드 대문자
+            }
+            xhr2.open("get", receiveUrl, true);
             xhr2.send();
-        });
-
-
+        })
 
 
 
