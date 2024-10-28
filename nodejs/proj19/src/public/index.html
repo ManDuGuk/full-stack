@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Item List</h1>
+    <ul id="item-list"></ul>
+
+    <h2>Add New Item</h2>
+    <input type="text" id="item-name" placeholder="Item name" />
+    <button onclick="addItem()">Add Item</button>
+
+    <script>
+        async function fetchItem() {
+            const response = await fetch('/items');
+            const items = await response.json();
+
+            console.log(response);
+            console.dir(response);
+
+            // let jsItems = JSON.parse(items);
+            console.log(items); //배열이 넘어오나?
+            console.log(items[0]); //배열이 넘어오내
+
+            // console.log(JSON.parse(items));
+
+
+        }
+
+        const itemUl = document.querySelector("#item-list");
+
+
+        fetchItem();
+
+    </script>
+</body>
+
+</html>
