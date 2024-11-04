@@ -1,9 +1,9 @@
 {
-  "name": "socket_p",
+  "name": "ajax_p",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,9 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1",
-    "mongoose": "^8.7.3",
-    "socket.io": "^4.8.1"
-  },
-  "type": "module"
+    "axios": "^1.7.7"
+  }
+
 }

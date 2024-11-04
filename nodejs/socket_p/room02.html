@@ -64,7 +64,7 @@
 </head>
 
 <body>
-    <h1>전체방</h1>
+    <h1> 룸 02 </h1>
     <div>
         <button id="roomAll">전체방</button>
         <button id="room01">룸 01</button>
@@ -81,28 +81,7 @@
     <!-- 클라이언트의 소켓 통신을 위한 스니펫 추가 -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        let roomID = "general"
-        let username = '';
-
-
-        function joinRoom(newRoomID) {
-            roomID = newRoomID;
-            socket.emit("joinRoom", roomID);
-            messages.innerHTML = ""; //이전메세지 초기화
-
-            // 기본 메세지 불러오기
-            socket.on("previousMessage", (messages) => {
-                messages.forEach(element => {
-                    renderMessage(element);
-                });
-            });
-
-            // 새 메시지 수신시 렌더링
-            socket.on("newMessage", (message) => {
-                renderMessage(message);
-            })
-        }
+        const socket = io("/room02");
 
         const form = document.querySelector("#form");
         const input = document.querySelector("#input");
@@ -126,55 +105,37 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();//페이지 안넘어가게
 
-            if (!username) {
-                // socket.emit("set username", usernameInput.value);
-
-                username = usernameInput.value || "익명";
+            if (usernameInput.value) {
+                socket.emit("set username", usernameInput.value);
                 usernameInput.disabled = true;
             } else {
                 socket.emit("set username", "익명");
             }
 
             if (input.value) {
-                // socket.emit("chat message", input.value);
-
-                sendMessage(roomID, username, input.value);
+                socket.emit("chat message", input.value);
                 input.value = "";
             }
         });
 
         //서버에서 넘겨받은 이름의 메세지를 받아서 렌더링
-        // socket.on("chat message", (username, msg) => {
-        //     const item = document.createElement('li');
-        //     const name = document.createElement('span');
+        socket.on("chat message", (username, msg) => {
+            const item = document.createElement('li');
+            const name = document.createElement('span');
 
-        //     name.textContent = username + ": ";
-        //     item.appendChild(name);
-        //     item.appendChild(document.createTextNode(msg));
+            name.textContent = username + ": ";
+            item.appendChild(name);
+            item.appendChild(document.createTextNode(msg));
 
-        //     messages.appendChild(item);
-
-        //     // 추가된 appendchild를 최신화 된걸 보여줄수 있도록 이동시키는 코드
-        //     //scrollTo는 해당 x좌표,y 좌표로 스클롤을 이동시킴t
-        //     window.scrollTo(0, document.body.scrollHeight);
-
-        // })
-
-        function renderMessage({ username, message }) {
-            const item = document.createElement("li");
-            item.textContent = `${username}: ${message}`;
             messages.appendChild(item);
+
+            // 추가된 appendchild를 최신화 된걸 보여줄수 있도록 이동시키는 코드
+            //scrollTo는 해당 x좌표,y 좌표로 스클롤을 이동시킴t
             window.scrollTo(0, document.body.scrollHeight);
-        }
 
-        socket.on("newMessage", renderMessage);
+        })
 
-        //메세지 보내기
-        function sendMessage(roomID, username, message) {
-            socket.emit("sendMessage", { roomID, username, message });
-        }
 
-        joinRoom(roomID);
     </script>
 </body>
 
