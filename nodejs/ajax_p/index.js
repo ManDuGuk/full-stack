@@ -35,7 +35,12 @@ const fetchTodos = async () => {
 //새로운 할일 추가하기
 const addTodo = async () => {
     try {
-        const response = await axios.post(BASE_URL)
+        const response = await axios.post(BASE_URL,
+            {
+                title: "새로운 할일",
+                "completed": false
+            }
+        )
         if (response.status !== 200) {
             return result = "post 요청 잘못됨"
         }
@@ -46,6 +51,18 @@ const addTodo = async () => {
     }
 }
 //특정 할일 수정하기
+const updateTodo = async () => {
+    try {
+        const response = await axios.put(BASE_URL,
+            {
+                
+            }
+        )
+    }
+    catch (err) {
+        return result = err;
+    }
+}
 //특정 할일 삭제하기
 
 
